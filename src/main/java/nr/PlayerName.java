@@ -10,4 +10,8 @@ public class PlayerName {
         this.surname = surname;
     }
 
+    public String getNameString() {
+        return surname + ", " + forename;
+    }
+
 }

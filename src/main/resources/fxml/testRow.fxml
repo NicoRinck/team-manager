@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+
+<?import java.net.URL?>
+<GridPane fx:id="gridPane" gridLinesVisible="true" hgap="0.0" vgap="0.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" stylesheets="/css/testRow.css">
+  <children>
+    <Label fx:id="position" text="Label" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <GridPane.margin>
+        <Insets left="5.0" fx:id="x1" />
+      </GridPane.margin>
+    </Label>
+    <Label fx:id="playerName" text="Label" GridPane.columnIndex="1" GridPane.margin="$x1" GridPane.rowIndex="0" />
+    <Label fx:id="birthDate" text="Label" GridPane.columnIndex="2" GridPane.margin="$x1" GridPane.rowIndex="0" />
+    <Label fx:id="test1" text="Label" GridPane.columnIndex="3" GridPane.margin="$x1" GridPane.rowIndex="0" />
+    <Label fx:id="test2" text="Label" GridPane.columnIndex="4" GridPane.margin="$x1" GridPane.rowIndex="0" />
+  </children>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="33.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0" prefWidth="162.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="105.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <padding>
+    <Insets />
+  </padding>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+</GridPane>

@@ -11,5 +11,11 @@ public class EntityList<T extends Entity> {
 
     }
 
+    public void showEntities() {
+        for (T t : entityList) {
+            System.out.println(t.toString());
+        }
+    }
+
 
 }
