@@ -32,7 +32,7 @@ public class PlayerListCell extends ListCell<Player> {
         } else {
             if (loader == null) {
                 loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/fxml/testRow.fxml"));
+                loader.setLocation(getClass().getResource("/fxml/PlayerListItem.fxml"));
                 loader.setController(this);
 
                 try {
