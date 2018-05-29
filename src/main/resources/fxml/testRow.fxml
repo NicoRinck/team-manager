@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
+<?import java.net.URL?>
 <?import java.util.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-
-<?import java.net.URL?>
-<GridPane fx:id="gridPane" gridLinesVisible="true" hgap="0.0" vgap="0.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" stylesheets="/css/testRow.css">
+<GridPane fx:id="gridPane" gridLinesVisible="true" hgap="0.0" vgap="0.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
     <Label fx:id="position" text="Label" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <GridPane.margin>
@@ -34,4 +34,7 @@
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
+  <stylesheets>
+    <URL value="@../css/testRow.css" />
+  </stylesheets>
 </GridPane>
