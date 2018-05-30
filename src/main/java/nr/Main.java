@@ -13,8 +13,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.*;
 
 
 /**
@@ -31,13 +31,16 @@ public class Main extends Application {
         TabPane tabPane = new TabPane();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
         ArrayList<Player> players = new ArrayList<>();
-        players.add(new Player(new PlayerAttributes(new PlayerName("Herbert", "Harry"), new Date(1993,3,18),new Postition[]{Postition.IV})));
-        players.add(new Player(new PlayerAttributes(new PlayerName("Ben", "Loris"), new Date(1971,3,8),new Postition[]{Postition.ST})));
-        players.add(new Player(new PlayerAttributes(new PlayerName("Dieter", "Bens"), new Date(1912,3,20),new Postition[]{Postition.ZDM})));
-        players.add(new Player(new PlayerAttributes(new PlayerName("Floyd", "Teuchert"), new Date(1984,3,18),new Postition[]{Postition.TW})));
-        players.add(new Player(new PlayerAttributes(new PlayerName("Dancil", "Harrison"), new Date(1999,3,2),new Postition[]{Postition.RF})));
-        players.add(new Player(new PlayerAttributes(new PlayerName("Lucas", "Harry"), new Date(1979,3,2),new Postition[]{Postition.LV})));
 
+        TreeSet<Position> positions1 = new TreeSet<>();
+        positions1.add(Position.IV);
+
+        players.add(new Player(new PlayerAttributes(new PlayerName("Herbert", "Harry"),LocalDate.of(1993, 3, 18), positions1)));
+        players.add(new Player(new PlayerAttributes(new PlayerName("Ben", "Loris"), LocalDate.of(1993, 3, 18), positions1)));
+        players.add(new Player(new PlayerAttributes(new PlayerName("Dieter", "Bens"), LocalDate.of(1993, 3, 18), positions1)));
+        players.add(new Player(new PlayerAttributes(new PlayerName("Floyd", "Teuchert"), LocalDate.of(1993, 3, 18), positions1)));
+        players.add(new Player(new PlayerAttributes(new PlayerName("Dancil", "Harrison"), LocalDate.of(1993, 3, 18), positions1)));
+        players.add(new Player(new PlayerAttributes(new PlayerName("Lucas", "Harry"), LocalDate.of(1993, 3, 18), positions1)));
         ObservableList<Player> observedPlayers = FXCollections.observableArrayList();
         observedPlayers.addAll(players);
         ListView<Player> listView = new ListView<>(observedPlayers);
@@ -48,7 +51,6 @@ public class Main extends Application {
                 return new PlayerListCell();
             }
         });
-        listView.setStyle("-fx-vgap: 0");
 
         Tab tab = new Tab();
         Tab tab2 = new Tab();
@@ -57,9 +59,9 @@ public class Main extends Application {
         tab.setContent(listView);
 
         tab2.setText("new tab");
-        tab2.setContent(new Rectangle(200,200, Color.ROSYBROWN));
+        tab2.setContent(new Rectangle(200, 200, Color.ROSYBROWN));
 
-        tabPane.getTabs().addAll(tab,tab2);
+        tabPane.getTabs().addAll(tab, tab2);
         Scene scene = new Scene(tabPane);
         primaryStage.setScene(scene);
         primaryStage.show();
