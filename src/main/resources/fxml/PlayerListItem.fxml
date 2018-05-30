@@ -3,23 +3,18 @@
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.net.URL?>
-<?import java.util.*?>
 <?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
 
-<GridPane fx:id="gridPane" gridLinesVisible="true" hgap="0.0" vgap="0.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<GridPane fx:id="gridPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
-    <Label fx:id="position" text="Label" GridPane.columnIndex="0" GridPane.rowIndex="0">
-      <GridPane.margin>
-        <Insets left="5.0" fx:id="x1" />
-      </GridPane.margin>
-    </Label>
-    <Label fx:id="playerName" text="Label" GridPane.columnIndex="1" GridPane.margin="$x1" GridPane.rowIndex="0" />
-    <Label fx:id="birthDate" text="Label" GridPane.columnIndex="2" GridPane.margin="$x1" GridPane.rowIndex="0" />
-    <Label fx:id="test1" text="Label" GridPane.columnIndex="3" GridPane.margin="$x1" GridPane.rowIndex="0" />
-    <Label fx:id="test2" text="Label" GridPane.columnIndex="4" GridPane.margin="$x1" GridPane.rowIndex="0" />
+    <Label fx:id="position" prefHeight="30.0" prefWidth="33.0" styleClass="label-border, label-first" text="Label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <Label fx:id="playerName" prefHeight="30.0" prefWidth="274.0" styleClass="label-border" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+    <Label fx:id="birthDate" prefHeight="30.0" prefWidth="126.0" styleClass="label-border" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+    <Label fx:id="test1" prefHeight="30.0" prefWidth="135.0" styleClass="label-border" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+    <Label fx:id="test2" prefHeight="30.0" prefWidth="100.0" styleClass="label-last" text="Label" GridPane.columnIndex="4" GridPane.rowIndex="0" />
   </children>
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="33.0" />

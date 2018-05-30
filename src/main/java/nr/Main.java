@@ -48,6 +48,7 @@ public class Main extends Application {
                 return new PlayerListCell();
             }
         });
+        listView.setStyle("-fx-vgap: 0");
 
         Tab tab = new Tab();
         Tab tab2 = new Tab();

@@ -1,3 +1,29 @@
-#position {
-     -fx-background-color: red;
- }
+#gridPane {
+    -fx-background-color: gray;
+    -fx-background-radius: 5;
+}
+
+#gridPane:focused {
+    -fx-background-color: green;
+}
+
+.label {
+    -fx-padding: 0 0 0 6;
+}
+
+.label-last {
+    -fx-background-radius: 0 5 5 0;
+}
+
+.label-first {
+    -fx-background-radius: 5 0 0 5;
+}
+
+.label-border {
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: #2e2e2e;
+}
+
+
+
+
