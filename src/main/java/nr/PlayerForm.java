@@ -2,9 +2,16 @@ package nr;
 
 public class PlayerForm implements Form<Player> {
 
-    private final PlayerAttributes playerAttributes;
+    private PlayerAttributes playerAttributes;
 
     public PlayerForm(PlayerAttributes playerAttributes) {
         this.playerAttributes = playerAttributes;
+    }
+
+    public PlayerForm() {
+    }
+
+    private void showForm() {
+
     }
 }

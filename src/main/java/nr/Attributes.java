@@ -1,5 +1,7 @@
 package nr;
 
-public interface Attributes<T extends Entity> {
+interface Attributes<T extends Entity> {
+
+    public boolean requiredFieldsValid();
 
 }

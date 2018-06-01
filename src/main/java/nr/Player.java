@@ -2,13 +2,13 @@ package nr;
 
 public class Player implements Entity {
 
-    private final PlayerAttributes playerAttributes;
+    private final Attributes<Player> playerAttributes;
 
     public Player(PlayerAttributes playerAttributes) {
         this.playerAttributes = playerAttributes;
     }
 
-    public PlayerAttributes getPlayerAttributes() {
+    public Attributes<Player> getPlayerAttributes() {
         return playerAttributes;
     }
 }

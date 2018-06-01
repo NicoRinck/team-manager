@@ -14,7 +14,8 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.TreeSet;
 
 
 /**
@@ -65,5 +66,7 @@ public class Main extends Application {
         Scene scene = new Scene(tabPane);
         primaryStage.setScene(scene);
         primaryStage.show();
+
+
     }
 }

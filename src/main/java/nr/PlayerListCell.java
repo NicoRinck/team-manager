@@ -19,8 +19,6 @@ public class PlayerListCell extends ListCell<Player> {
     @FXML private GridPane gridPane;
 
 
-
-
     @Override
     protected void updateItem(Player item, boolean empty) {
         super.updateItem(item, empty);
