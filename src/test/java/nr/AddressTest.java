@@ -20,7 +20,7 @@ public class AddressTest {
         this.expectedPostCode = "12345";
         this.expectedStreet = "Str";
         this.expectedHouseNumber = 324;
-        this.address = CreateAddress.residence(expectedResidence)
+        this.address = AddressBuilder.residence(expectedResidence)
                 .withPostCode(expectedPostCode)
                 .inStreet(expectedStreet)
                 .withHouseNumber(expectedHouseNumber)

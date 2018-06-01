@@ -1,20 +1,25 @@
 package nr;
 
-public final class CreateAddress implements Builder<Address> {
+/*TODO: New File Structure --> address > Address, AddressBuilder
+--> ensure that only Builder can use Constructor (package private)
+
+ */
+
+public final class AddressBuilder implements Builder<Address> {
     private String residence;
     private String postCode;
     private String street;
     private int houseNumber;
 
-    private CreateAddress(String residence) {
+    private AddressBuilder(String residence) {
         this.residence = residence;
     }
 
-    public static CreateAddress residence(String residence) {
-        return new CreateAddress(residence);
+    public static AddressBuilder residence(String residence) {
+        return new AddressBuilder(residence);
     }
 
-    public CreateAddress withPostCode(String postCode) {
+    public AddressBuilder withPostCode(String postCode) {
         this.postCode = postCode;
         return this;
     }
@@ -28,13 +33,13 @@ public final class CreateAddress implements Builder<Address> {
         private AddressWithStreet() {
         }
 
-        public CreateAddress withHouseNumber(int houseNumber) {
-            CreateAddress.this.houseNumber = houseNumber;
-            return CreateAddress.this;
+        public AddressBuilder withHouseNumber(int houseNumber) {
+            AddressBuilder.this.houseNumber = houseNumber;
+            return AddressBuilder.this;
         }
 
         public Address build() {
-            return CreateAddress.this.build();
+            return AddressBuilder.this.build();
         }
     }
 
