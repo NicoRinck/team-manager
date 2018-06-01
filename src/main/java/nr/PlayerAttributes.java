@@ -16,12 +16,7 @@ public class PlayerAttributes implements Attributes<Player> {
         this.positions = positions;
     }
 
-    public PlayerAttributes() {
-    }
-
-    @Override
-    public boolean requiredFieldsValid() {
-        return false;
+    private PlayerAttributes() {
     }
 
     public PlayerName getPlayerName() {
