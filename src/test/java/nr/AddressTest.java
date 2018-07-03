@@ -1,5 +1,6 @@
 package nr;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -44,4 +45,6 @@ public class AddressTest {
     public void testHouseNumber() {
         assertEquals(expectedHouseNumber, address.getHouseNumber());
     }
+
+
 }

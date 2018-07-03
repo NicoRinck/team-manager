@@ -1,6 +1,6 @@
 package nr;
 
-/*TODO: New File Structure --> address > Address, AddressBuilder
+/*TODO: New File Structure --> address > Address, AddressBuilder, Validator
 --> ensure that only Builder can use Constructor (package private)
 
  */

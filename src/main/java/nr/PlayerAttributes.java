@@ -3,7 +3,7 @@ package nr;
 import java.time.LocalDate;
 import java.util.TreeSet;
 
-public class PlayerAttributes implements Attributes<Player> {
+public class PlayerAttributes {
 
     private PlayerName playerName;
     private LocalDate birthDate;
@@ -27,6 +27,10 @@ public class PlayerAttributes implements Attributes<Player> {
 
     public TreeSet<Position> getPositions() {
         return positions;
+    }
+
+    public void setPlayerName(PlayerName playerName) {
+        this.playerName = playerName;
     }
 }
 

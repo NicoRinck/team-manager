@@ -2,12 +2,12 @@ package nr;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -26,6 +26,7 @@ public class Main extends Application {
         launch(args);
     }
 
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Test");
@@ -36,7 +37,7 @@ public class Main extends Application {
         TreeSet<Position> positions1 = new TreeSet<>();
         positions1.add(Position.IV);
 
-        players.add(new Player(new PlayerAttributes(new PlayerName("Herbert", "Harry"),LocalDate.of(1993, 3, 18), positions1)));
+        players.add(new Player(new PlayerAttributes(new PlayerName("Herbert", "Harry"), LocalDate.of(1993, 3, 18), positions1)));
         players.add(new Player(new PlayerAttributes(new PlayerName("Ben", "Loris"), LocalDate.of(1993, 3, 18), positions1)));
         players.add(new Player(new PlayerAttributes(new PlayerName("Dieter", "Bens"), LocalDate.of(1993, 3, 18), positions1)));
         players.add(new Player(new PlayerAttributes(new PlayerName("Floyd", "Teuchert"), LocalDate.of(1993, 3, 18), positions1)));
@@ -44,6 +45,13 @@ public class Main extends Application {
         players.add(new Player(new PlayerAttributes(new PlayerName("Lucas", "Harry"), LocalDate.of(1993, 3, 18), positions1)));
         ObservableList<Player> observedPlayers = FXCollections.observableArrayList();
         observedPlayers.addAll(players);
+        observedPlayers.addListener(new ListChangeListener<Player>() {
+            @Override
+            public void onChanged(Change<? extends Player> c) {
+                System.out.println("im am callled");
+
+            }
+        });
         ListView<Player> listView = new ListView<>(observedPlayers);
 
         listView.setCellFactory(new Callback<ListView<Player>, ListCell<Player>>() {
@@ -62,7 +70,27 @@ public class Main extends Application {
         tab2.setText("new tab");
         tab2.setContent(new Rectangle(200, 200, Color.ROSYBROWN));
 
+        Button button = new Button("Click");
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                listView.getItems().add(new Player(new PlayerAttributes(new PlayerName("Been", "Loris"), LocalDate.of(1993, 3, 18), positions1)));
+                listView.setCellFactory(new Callback<ListView<Player>, ListCell<Player>>() {
+                    @Override
+                    public ListCell<Player> call(ListView<Player> studentListView) {
+                        return new PlayerListCell();
+                    }
+                });
+                for (Player player : observedPlayers) {
+                    System.out.println(player.getPlayerAttributes().getPlayerName().getNameString());
+                }
+
+            }
+        });
+        tab2.setContent(button);
+
         tabPane.getTabs().addAll(tab, tab2);
+
         Scene scene = new Scene(tabPane);
         primaryStage.setScene(scene);
         primaryStage.show();

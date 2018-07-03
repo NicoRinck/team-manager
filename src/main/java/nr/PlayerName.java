@@ -2,7 +2,7 @@ package nr;
 
 public class PlayerName {
 
-    private final String forename;
+    private String forename;
     private final String surname;
 
     public PlayerName(String forename, String surname) {
@@ -14,4 +14,11 @@ public class PlayerName {
         return surname + ", " + forename;
     }
 
+    public void setForename(String forename) {
+        this.forename = forename;
+    }
+
+    public String getForename() {
+        return forename;
+    }
 }
