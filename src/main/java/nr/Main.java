@@ -43,7 +43,7 @@ public class Main extends Application {
         players.add(new Player(new PlayerAttributes(new PlayerName("Floyd", "Teuchert"), LocalDate.of(1993, 3, 18), positions1)));
         players.add(new Player(new PlayerAttributes(new PlayerName("Dancil", "Harrison"), LocalDate.of(1993, 3, 18), positions1)));
         players.add(new Player(new PlayerAttributes(new PlayerName("Lucas", "Harry"), LocalDate.of(1993, 3, 18), positions1)));
-        ObservableList<Player> observedPlayers = FXCollections.observableArrayList();
+        final ObservableList<Player> observedPlayers = FXCollections.observableArrayList();
         observedPlayers.addAll(players);
         observedPlayers.addListener(new ListChangeListener<Player>() {
             @Override
@@ -52,7 +52,7 @@ public class Main extends Application {
 
             }
         });
-        ListView<Player> listView = new ListView<>(observedPlayers);
+        final ListView<Player> listView = new ListView<>(observedPlayers);
 
         listView.setCellFactory(new Callback<ListView<Player>, ListCell<Player>>() {
             @Override
