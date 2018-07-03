@@ -1,4 +1,4 @@
-package nr.data_model;
+package nr.data_model.form_fields;
 
 public class PlayerName {
 

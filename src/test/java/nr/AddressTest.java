@@ -1,7 +1,7 @@
 package nr;
 
-import nr.data_model.Address;
-import nr.data_model.AddressBuilder;
+import nr.data_model.form_fields.address.Address;
+import nr.data_model.form_fields.address.AddressBuilder;
 import org.junit.Before;
 import org.junit.Test;
 

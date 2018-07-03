@@ -1,9 +1,6 @@
-package nr.data_model;
+package nr.data_model.form_fields.address;
 
-/*TODO: New File Structure --> address > Address, AddressBuilder, Validator
---> ensure that only Builder can use Constructor (package private)
-
- */
+import nr.data_model.Builder;
 
 public final class AddressBuilder implements Builder<Address> {
     private String residence;

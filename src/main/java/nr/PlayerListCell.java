@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.GridPane;
-import nr.data_model.Player;
+import nr.data_model.entities.player.Player;
 
 import java.io.IOException;
 

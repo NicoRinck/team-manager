@@ -1,6 +1,6 @@
-package nr.data_model;
+package nr;
 
-import nr.data_model.Entity;
+import nr.data_model.entities.Entity;
 
 import java.util.List;
 

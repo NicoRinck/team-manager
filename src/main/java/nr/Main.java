@@ -12,10 +12,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import nr.data_model.Player;
-import nr.data_model.PlayerAttributes;
-import nr.data_model.PlayerName;
-import nr.data_model.Position;
+import nr.data_model.entities.player.Player;
+import nr.data_model.entities.player.PlayerAttributes;
+import nr.data_model.form_fields.PlayerName;
+import nr.data_model.form_fields.Position;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
