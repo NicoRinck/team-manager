@@ -1,4 +1,4 @@
-package nr;
+package nr.data_model;
 
 /*TODO: New File Structure --> address > Address, AddressBuilder, Validator
 --> ensure that only Builder can use Constructor (package private)

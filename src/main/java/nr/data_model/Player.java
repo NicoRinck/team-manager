@@ -1,4 +1,4 @@
-package nr;
+package nr.data_model;
 
 public class Player implements Entity {
 

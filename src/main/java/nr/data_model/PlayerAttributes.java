@@ -1,4 +1,4 @@
-package nr;
+package nr.data_model;
 
 import java.time.LocalDate;
 import java.util.TreeSet;
