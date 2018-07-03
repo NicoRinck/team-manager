@@ -1,5 +1,6 @@
 package nr.data_model.entities.player;
 
+import nr.data_model.entities.EntityAttributes;
 import nr.data_model.form_fields.address.Address;
 import nr.data_model.form_fields.PlayerName;
 import nr.data_model.form_fields.Position;
@@ -7,7 +8,7 @@ import nr.data_model.form_fields.Position;
 import java.time.LocalDate;
 import java.util.TreeSet;
 
-public class PlayerAttributes {
+public class PlayerAttributes implements EntityAttributes<Player> {
 
     private PlayerName playerName;
     private LocalDate birthDate;
