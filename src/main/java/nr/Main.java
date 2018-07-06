@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import nr.data_model.entities.player.Player;
 import nr.data_model.entities.player.PlayerAttributes;
+import nr.data_model.form_fields.BirthDate;
 import nr.data_model.form_fields.PlayerName;
 import nr.data_model.form_fields.Position;
 
@@ -41,12 +42,12 @@ public class Main extends Application {
         TreeSet<Position> positions1 = new TreeSet<>();
         positions1.add(Position.IV);
 
-        players.add(new Player(new PlayerAttributes(new PlayerName("Herbert", "Harry"), LocalDate.of(1993, 3, 18), positions1)));
-        players.add(new Player(new PlayerAttributes(new PlayerName("Ben", "Loris"), LocalDate.of(1993, 3, 18), positions1)));
-        players.add(new Player(new PlayerAttributes(new PlayerName("Dieter", "Bens"), LocalDate.of(1993, 3, 18), positions1)));
-        players.add(new Player(new PlayerAttributes(new PlayerName("Floyd", "Teuchert"), LocalDate.of(1993, 3, 18), positions1)));
-        players.add(new Player(new PlayerAttributes(new PlayerName("Dancil", "Harrison"), LocalDate.of(1993, 3, 18), positions1)));
-        players.add(new Player(new PlayerAttributes(new PlayerName("Lucas", "Harry"), LocalDate.of(1993, 3, 18), positions1)));
+        players.add(new Player(new PlayerAttributes(new PlayerName("Herbert", "Harry"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
+        players.add(new Player(new PlayerAttributes(new PlayerName("Ben", "Loris"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
+        players.add(new Player(new PlayerAttributes(new PlayerName("Dieter", "Bens"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
+        players.add(new Player(new PlayerAttributes(new PlayerName("Floyd", "Teuchert"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
+        players.add(new Player(new PlayerAttributes(new PlayerName("Dancil", "Harrison"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
+        players.add(new Player(new PlayerAttributes(new PlayerName("Lucas", "Harry"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
         final ObservableList<Player> observedPlayers = FXCollections.observableArrayList();
         observedPlayers.addAll(players);
         observedPlayers.addListener(new ListChangeListener<Player>() {
@@ -78,7 +79,7 @@ public class Main extends Application {
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                listView.getItems().add(new Player(new PlayerAttributes(new PlayerName("Been", "Loris"), LocalDate.of(1993, 3, 18), positions1)));
+                listView.getItems().add(new Player(new PlayerAttributes(new PlayerName("Been", "Loris"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
                 listView.setCellFactory(new Callback<ListView<Player>, ListCell<Player>>() {
                     @Override
                     public ListCell<Player> call(ListView<Player> studentListView) {
