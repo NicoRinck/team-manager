@@ -1,9 +1,8 @@
 package nr;
 
-import nr.data_model.entities.player.Player;
 import nr.data_model.entities.player.PlayerAttributes;
 
-public class PlayerForm implements Form<Player> {
+public class PlayerForm implements Form<PlayerAttributes> {
 
     private PlayerAttributes playerAttributes;
 
@@ -16,8 +15,9 @@ public class PlayerForm implements Form<Player> {
     public PlayerForm() {
     }
 
-    private void showForm() {
-
+    @Override
+    public PlayerAttributes showForm() {
+        return null;
     }
 
     private PlayerAttributes getFormResults() {

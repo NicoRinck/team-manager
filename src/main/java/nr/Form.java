@@ -1,7 +1,7 @@
 package nr;
 
-import nr.data_model.entities.Entity;
+import nr.data_model.entities.EntityAttributes;
 
-public interface Form<T extends Entity> {
-
+public interface Form<T extends EntityAttributes> {
+    T showForm();
 }
