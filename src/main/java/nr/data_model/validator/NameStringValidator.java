@@ -1,9 +1,8 @@
 package nr.data_model.validator;
 
-public class NameStringValidator implements Validator<String> {
+public class NameStringValidator {
 
-    @Override
-    public String getErrorMessage(String value) {
+    public static String getErrorMessage(String value) {
         if (!consistOfValidCharacter(value)) {
             return "ungültiges Zeichen!";
         }

@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -75,7 +76,11 @@ public class Main extends Application {
         tab2.setText("new tab");
         tab2.setContent(new Rectangle(200, 200, Color.ROSYBROWN));
 
+        HBox hBox = new HBox();
+
         Button button = new Button("Click");
+        DatePicker datePicker = new DatePicker();
+        datePicker.setValue(LocalDate.now());
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -83,7 +88,8 @@ public class Main extends Application {
                playerForm.showAndWait();
             }
         });
-        tab2.setContent(button);
+        hBox.getChildren().addAll(button,datePicker);
+        tab2.setContent(hBox);
 
         tabPane.getTabs().addAll(tab, tab2);
 

@@ -1,16 +1,14 @@
 package nr;
 
 import javafx.scene.control.Dialog;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import nr.data_model.entities.player.PlayerAttributes;
-import nr.ui.PlayerNameGrid;
+import nr.ui.BirthDateComponent;
+import nr.ui.PlayerNameComponent;
 
-public class PlayerForm extends Dialog<PlayerAttributes> implements Form<PlayerAttributes> {
+public class PlayerForm extends Dialog<PlayerAttributes>{
 
     private PlayerAttributes playerAttributes;
-
-
-
 
     //edit Player
     public PlayerForm(PlayerAttributes playerAttributes) {
@@ -25,16 +23,13 @@ public class PlayerForm extends Dialog<PlayerAttributes> implements Form<PlayerA
 
     private void initForm() {
         this.setTitle(getDialogTitle());
-        PlayerNameGrid test = new PlayerNameGrid();
-        this.getDialogPane().setContent(test);
-    }
+        VBox vBox = new VBox();
+        PlayerNameComponent playerNameGrid = new PlayerNameComponent();
+        BirthDateComponent birthDateComponent = new BirthDateComponent();
+        vBox.getChildren().addAll(playerNameGrid.getComponent(),birthDateComponent.getComponent());
 
-    private void initGrid() {
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
+        this.getDialogPane().setContent(vBox);
     }
-
 
     private String getDialogTitle() {
         if (this.playerAttributes == null) {
@@ -42,11 +37,4 @@ public class PlayerForm extends Dialog<PlayerAttributes> implements Form<PlayerA
         }
         return playerAttributes.getPlayerName().getNameString();
     }
-
-    @Override
-    public PlayerAttributes showForm() {
-        return null;
-    }
-
-
 }
