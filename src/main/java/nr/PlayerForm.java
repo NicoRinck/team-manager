@@ -1,7 +1,6 @@
 package nr;
 
 import javafx.scene.control.Dialog;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import nr.data_model.entities.player.PlayerAttributes;
 import nr.ui.PlayerNameGrid;
