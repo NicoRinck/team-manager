@@ -79,17 +79,8 @@ public class Main extends Application {
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                listView.getItems().add(new Player(new PlayerAttributes(new PlayerName("Been", "Loris"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
-                listView.setCellFactory(new Callback<ListView<Player>, ListCell<Player>>() {
-                    @Override
-                    public ListCell<Player> call(ListView<Player> studentListView) {
-                        return new PlayerListCell();
-                    }
-                });
-                for (Player player : observedPlayers) {
-                    System.out.println(player.getPlayerAttributes().getPlayerName().getNameString());
-                }
-
+               PlayerForm playerForm = new PlayerForm();
+               playerForm.showAndWait();
             }
         });
         tab2.setContent(button);
