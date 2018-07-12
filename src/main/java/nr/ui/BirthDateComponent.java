@@ -35,7 +35,6 @@ public class BirthDateComponent extends FormComponent<BirthDate> {
         hBox.setSpacing(10);
         hBox.setAlignment(Pos.BASELINE_LEFT);
         hBox.getChildren().addAll(new Label("Geburtsdatum: "),datePicker,errorLabels[0]);
-        installEventHandler(this.datePicker);
     }
 
     @Override

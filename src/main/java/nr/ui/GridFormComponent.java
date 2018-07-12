@@ -14,31 +14,34 @@ public abstract class GridFormComponent<T> extends FormComponent<T> {
     public GridFormComponent(int amountOfFields) {
         super(amountOfFields);
         initGrid();
-        initGridConstraints();
-
     }
+
     private void initGrid() {
         this.gridPane.setHgap(10);
         this.gridPane.setVgap(10);
         this.gridPane.setMinWidth(500);
+
+        initGridConstraints();
         addErrorLabels();
     }
 
-    private void addErrorLabels() {
+    protected void addErrorLabels() {
         for (int i = 0; i < errorLabels.length; i++) {
             this.gridPane.add(errorLabels[i], 2,i);
         }
     }
 
-    private void initGridConstraints() {
+    protected void initGridConstraints() {
         ColumnConstraints column1 = new ColumnConstraints();
         column1.setMinWidth(80);
         column1.setHgrow(Priority.NEVER);
         ColumnConstraints column2 = new ColumnConstraints();
         column2.setPercentWidth(55);
+        column2.setFillWidth(false);
         column2.setHgrow(Priority.ALWAYS);
         ColumnConstraints column3 = new ColumnConstraints();
         column3.setPercentWidth(40);
+        column3.setMaxWidth(150);
         column3.setHgrow(Priority.SOMETIMES);
         this.gridPane.getColumnConstraints().addAll(column1,column2,column3);
     }

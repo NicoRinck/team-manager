@@ -10,15 +10,12 @@ import java.util.Optional;
 
 public class PlayerNameComponent extends GridFormComponent<PlayerName> {
 
-    private PlayerName playerName;
-
     private final TextField forenameField = new TextField();
     private final TextField surnameField = new TextField();
 
     public PlayerNameComponent(PlayerName playerName) {
         super(2);
-        this.playerName = playerName;
-        this.fillTextFields();
+        this.fillTextFields(playerName);
         this.init();
     }
 
@@ -27,13 +24,12 @@ public class PlayerNameComponent extends GridFormComponent<PlayerName> {
         this.init();
     }
 
-    private void fillTextFields() {
+    private void fillTextFields(PlayerName playerName) {
         this.forenameField.setText(playerName.getForename());
         this.surnameField.setText(playerName.getSurname());
     }
 
     private void init() {
-        this.installEventHandler(forenameField, surnameField);
         this.fillGrid();
     }
 
