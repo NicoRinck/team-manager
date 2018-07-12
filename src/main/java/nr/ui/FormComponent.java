@@ -3,6 +3,9 @@ package nr.ui;
 import javafx.scene.Node;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 
 import java.util.Optional;
 
@@ -42,6 +45,7 @@ public abstract class FormComponent<T> {
             errorLabel.setText(errorMessage);
         }
     }
+
 
     abstract Optional<T> getComponentValue();
 

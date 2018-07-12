@@ -18,6 +18,7 @@ import nr.data_model.entities.player.PlayerAttributes;
 import nr.data_model.form_fields.BirthDate;
 import nr.data_model.form_fields.PlayerName;
 import nr.data_model.form_fields.Position;
+import nr.ui.GridFormComponent;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -96,7 +97,6 @@ public class Main extends Application {
         Scene scene = new Scene(tabPane);
         primaryStage.setScene(scene);
         primaryStage.show();
-
 
     }
 }
