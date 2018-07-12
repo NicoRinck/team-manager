@@ -1,6 +1,8 @@
 package nr.data_model.form_fields.address;
 
 import nr.data_model.Builder;
+import nr.data_model.validator.AddressValidator;
+import nr.data_model.validator.NameStringValidator;
 
 public final class AddressBuilder implements Builder<Address> {
     private String residence;
@@ -16,23 +18,29 @@ public final class AddressBuilder implements Builder<Address> {
         return new AddressBuilder(residence);
     }
 
-    public AddressBuilder withPostCode(String postCode) {
-        this.postCode = postCode;
-        return this;
+    public AddressBuilder withPostCode(String postCode) throws IllegalArgumentException {
+        if (AddressValidator.validPostCode(postCode)) {
+            this.postCode = postCode;
+            return this;
+        } else throw new IllegalArgumentException();
     }
 
-    public AddressWithStreet inStreet(String street) {
-        this.street = street;
-        return new AddressWithStreet();
+    public AddressWithStreet inStreet(String street) throws IllegalArgumentException {
+        if (NameStringValidator.isValidNameString(street)) {
+            this.street = street;
+            return new AddressWithStreet();
+        } else throw new IllegalArgumentException();
     }
 
     public final class AddressWithStreet implements Builder<Address> {
         private AddressWithStreet() {
         }
 
-        public AddressBuilder withHouseNumber(int houseNumber) {
-            AddressBuilder.this.houseNumber = houseNumber;
-            return AddressBuilder.this;
+        public AddressBuilder withHouseNumber(int houseNumber) throws IllegalArgumentException {
+            if (AddressValidator.validHouseNumber(houseNumber)) {
+                AddressBuilder.this.houseNumber = houseNumber;
+                return AddressBuilder.this;
+            } else throw new IllegalArgumentException();
         }
 
         public Address build() {
