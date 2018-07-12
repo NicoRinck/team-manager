@@ -28,7 +28,7 @@ public abstract class FormComponent<T> {
     protected void installEventHandler(Control... controls) {
         for (final Control control: controls) {
             control.setOnMouseClicked(e -> {
-                control.setStyle("-fx-border-color: green");
+                control.setStyle("-fx-border-color: red");
             });
             control.setOnMouseExited(e -> {
                 control.setStyle("-fx-border-color: gray");

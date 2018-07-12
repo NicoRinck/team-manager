@@ -24,6 +24,8 @@ public class PlayerForm extends Dialog<PlayerAttributes>{
     private void initForm() {
         this.setTitle(getDialogTitle());
         VBox vBox = new VBox();
+        vBox.setPrefWidth(600);
+        vBox.setSpacing(10);
         PlayerNameComponent playerNameGrid = new PlayerNameComponent();
         BirthDateComponent birthDateComponent = new BirthDateComponent();
         vBox.getChildren().addAll(playerNameGrid.getComponent(),birthDateComponent.getComponent());

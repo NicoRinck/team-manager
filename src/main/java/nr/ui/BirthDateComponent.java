@@ -1,7 +1,9 @@
 package nr.ui;
 
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import nr.data_model.form_fields.BirthDate;
 import nr.data_model.validator.BirthDateValidator;
@@ -11,7 +13,7 @@ import java.util.Optional;
 
 public class BirthDateComponent extends FormComponent<BirthDate> {
 
-    private final LocalDate defaultDate = LocalDate.of(2000,1,1);
+
     private BirthDate birthDate;
     private final HBox hBox = new HBox();
     private final DatePicker datePicker = new DatePicker();
@@ -25,12 +27,15 @@ public class BirthDateComponent extends FormComponent<BirthDate> {
 
     public BirthDateComponent() {
         super(1);
-        this.datePicker.setValue(defaultDate);
+        this.datePicker.setValue(LocalDate.of(2000,1,1));
         this.initComponent();
     }
 
     private void initComponent() {
-        hBox.getChildren().addAll(datePicker,errorLabels[0]);
+        hBox.setSpacing(10);
+        hBox.setAlignment(Pos.BASELINE_LEFT);
+        hBox.getChildren().addAll(new Label("Geburtsdatum: "),datePicker,errorLabels[0]);
+        installEventHandler(this.datePicker);
     }
 
     @Override
