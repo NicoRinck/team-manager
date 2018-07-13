@@ -7,7 +7,11 @@ public class AddressValidator {
     }
 
     public static boolean validPostCode(String postCode) {
-        return postCode.length() == 5 && isInPostCodeRange(Integer.valueOf(postCode));
+        try {
+            return postCode.length() == 5 && isInPostCodeRange(Integer.valueOf(postCode));
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     private static boolean isInPostCodeRange(int value) {
@@ -16,7 +20,7 @@ public class AddressValidator {
 
     public static String getPostCodeErrorMessage(String postCode) {
         if (postCode.length() != 5) {
-            return "Postleitzahl besteht aus 5 Stellen";
+            return "Postleitzahl muss aus 5 Stellen bestehen";
         }
         if (isInPostCodeRange(Integer.valueOf(postCode))) {
             return "Die Postleitzahl ist ungültig";
