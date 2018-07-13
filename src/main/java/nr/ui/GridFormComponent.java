@@ -32,8 +32,7 @@ public abstract class GridFormComponent<T> extends FormComponent<T> {
     }
 
     protected void initGridConstraints() {
-        ColumnConstraints column1 = new ColumnConstraints();
-        column1.setMinWidth(80);
+        ColumnConstraints column1 = new ColumnConstraints(90);
         column1.setHgrow(Priority.NEVER);
         ColumnConstraints column2 = new ColumnConstraints();
         column2.setPercentWidth(55);
