@@ -6,6 +6,7 @@ import nr.data_model.entities.player.PlayerAttributes;
 import nr.ui.AddressComponent;
 import nr.ui.BirthDateComponent;
 import nr.ui.PlayerNameComponent;
+import nr.ui.PositionsComponent;
 
 public class PlayerForm extends Dialog<PlayerAttributes>{
 
@@ -29,8 +30,10 @@ public class PlayerForm extends Dialog<PlayerAttributes>{
         vBox.setSpacing(20);
         PlayerNameComponent playerNameGrid = new PlayerNameComponent();
         BirthDateComponent birthDateComponent = new BirthDateComponent();
+        PositionsComponent positionsComponent = new PositionsComponent();
         AddressComponent addressComponent = new AddressComponent();
-        vBox.getChildren().addAll(playerNameGrid.getComponent(),birthDateComponent.getComponent(),addressComponent.getComponent());
+        vBox.getChildren().addAll(playerNameGrid.getComponent(),birthDateComponent.getComponent(),
+                positionsComponent.getComponent(),addressComponent.getComponent());
 
         this.getDialogPane().setContent(vBox);
     }

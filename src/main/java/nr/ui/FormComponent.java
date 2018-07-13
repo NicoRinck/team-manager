@@ -11,17 +11,17 @@ import java.util.Optional;
 
 public abstract class FormComponent<T> {
 
-    protected final int amountOfFields;
+    protected final int amountOfErrorFields;
     protected Label[] errorLabels;
 
-    public FormComponent(int amountOfFields) {
-        this.amountOfFields = amountOfFields;
-        this.errorLabels = new Label[amountOfFields];
+    public FormComponent(int amountOfErrorFields) {
+        this.amountOfErrorFields = amountOfErrorFields;
+        this.errorLabels = new Label[amountOfErrorFields];
         initErrorLabels();
     }
 
     private void initErrorLabels() {
-        for (int i = 0; i < this.amountOfFields; i++) {
+        for (int i = 0; i < this.amountOfErrorFields; i++) {
             Label label = new Label();
             label.setStyle("-fx-text-fill: red");
             errorLabels[i] = label;

@@ -17,12 +17,11 @@ import nr.data_model.entities.player.Player;
 import nr.data_model.entities.player.PlayerAttributes;
 import nr.data_model.form_fields.BirthDate;
 import nr.data_model.form_fields.PlayerName;
-import nr.data_model.form_fields.Position;
-import nr.ui.GridFormComponent;
+import nr.data_model.form_fields.position.PlayerPositions;
+import nr.data_model.form_fields.position.Position;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.TreeSet;
 
 
 /**
@@ -41,15 +40,21 @@ public class Main extends Application {
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
         ArrayList<Player> players = new ArrayList<>();
 
-        TreeSet<Position> positions1 = new TreeSet<>();
-        positions1.add(Position.IV);
+        PlayerPositions positions1 = new PlayerPositions(Position.IV);
 
-        players.add(new Player(new PlayerAttributes(new PlayerName("Herbert", "Harry"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
-        players.add(new Player(new PlayerAttributes(new PlayerName("Ben", "Loris"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
-        players.add(new Player(new PlayerAttributes(new PlayerName("Dieter", "Bens"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
-        players.add(new Player(new PlayerAttributes(new PlayerName("Floyd", "Teuchert"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
-        players.add(new Player(new PlayerAttributes(new PlayerName("Dancil", "Harrison"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
-        players.add(new Player(new PlayerAttributes(new PlayerName("Lucas", "Harry"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
+        players.add(new Player(new PlayerAttributes(new PlayerName("Herbert", "Harry"),
+                new BirthDate(LocalDate.of(1993, 3, 18)),
+                positions1)));
+        players.add(new Player(new PlayerAttributes(new PlayerName("Ben", "Loris"),
+                new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
+        players.add(new Player(new PlayerAttributes(new PlayerName("Dieter", "Bens"),
+                new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
+        players.add(new Player(new PlayerAttributes(new PlayerName("Floyd", "Teuchert"),
+                new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
+        players.add(new Player(new PlayerAttributes(new PlayerName("Dancil", "Harrison"),
+                new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
+        players.add(new Player(new PlayerAttributes(new PlayerName("Lucas", "Harry"),
+                new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
         final ObservableList<Player> observedPlayers = FXCollections.observableArrayList();
         observedPlayers.addAll(players);
         observedPlayers.addListener(new ListChangeListener<Player>() {
