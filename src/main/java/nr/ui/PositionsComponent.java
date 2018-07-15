@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import nr.data_model.form_fields.position.PlayerPositions;
 import nr.data_model.form_fields.position.Position;
+import nr.data_model.validator.PlayerPositionValidator;
 
 import java.util.Optional;
 
@@ -23,13 +24,13 @@ public class PositionsComponent extends FormComponent {
     private final ChoiceBox<Position> tertiaryPositionField = new ChoiceBox<>();
 
     public PositionsComponent() {
-        super(1);
+        super(0);
         fillChoiceBoxes();
         initView();
     }
 
     public PositionsComponent(PlayerPositions playerPositions) {
-        super(1);
+        super(0);
         fillChoiceBoxes(playerPositions);
         initView();
     }
@@ -45,7 +46,8 @@ public class PositionsComponent extends FormComponent {
     private void fillChoiceBoxes(PlayerPositions playerPositions) {
         primaryPositionField.setItems(getPositionListWithoutSelected(false,
                 playerPositions.getSecondaryPosition(), playerPositions.getTertiaryPosition()));
-        secondaryPositionField.setItems(getPositionListWithoutSelected(true,
+        secondaryPositionField.setItems(getPositionListWithoutSelected(
+                playerPositions.getTertiaryPosition() == Position.NO_POSITION,
                 playerPositions.getPrimaryPosition(), playerPositions.getTertiaryPosition()));
         tertiaryPositionField.setItems(getPositionListWithoutSelected(true,
                 playerPositions.getPrimaryPosition(), playerPositions.getSecondaryPosition()));
@@ -78,12 +80,12 @@ public class PositionsComponent extends FormComponent {
         initChangeListener();
     }
 
-    private void editPositionList(ObservableList<Position> positionList, Position oldValue, Position newValue) {
-        if (!positionList.contains(oldValue)) {
-            positionList.add(oldValue);
+    private void editPositionList(ObservableList<Position> positionList, Position positionToAdd, Position positionToRemove) {
+        if (!positionList.contains(positionToAdd) && positionToAdd != Position.NO_POSITION) {
+            positionList.add(positionToAdd);
         }
-        if (newValue != Position.NO_POSITION) {
-            positionList.remove(newValue);
+        if (positionToRemove != Position.NO_POSITION) {
+            positionList.remove(positionToRemove);
             positionList.remove(null);
         }
     }
@@ -93,11 +95,23 @@ public class PositionsComponent extends FormComponent {
         hBox.setAlignment(Pos.BASELINE_LEFT);
         hBox.setSpacing(20);
         hBox.getChildren().addAll(new Label("Positionen: "), primaryPositionField,
-                secondaryPositionField, tertiaryPositionField, errorLabels[0]);
+                secondaryPositionField, tertiaryPositionField);
     }
 
     @Override
     Optional getComponentValue() {
+        final Position[] positions = {
+                primaryPositionField.getValue(),
+                secondaryPositionField.getValue(),
+                tertiaryPositionField.getValue()};
+
+        if (PlayerPositionValidator.previousPositionDefined(positions)) {
+            PlayerPositions playerPositions = new PlayerPositions(positions[0]);
+            playerPositions.setSecondaryPosition(positions[1]);
+            playerPositions.setTertiaryPosition(positions[2]);
+
+            return Optional.of(playerPositions);
+        }
         return Optional.empty();
     }
 
@@ -130,7 +144,7 @@ public class PositionsComponent extends FormComponent {
             @Override
             public void changed(ObservableValue<? extends Position> observable, Position oldValue, Position newValue) {
                 if (oldValue == Position.NO_POSITION) {
-                    primaryPositionField.getItems().remove(Position.NO_POSITION);
+                    removePositionToken(primaryPositionField, Position.NO_POSITION);
                 }
                 secondaryPositionField.setDisable(false);
                 editPositionList(secondaryPositionField.getItems(), oldValue, newValue);
@@ -150,7 +164,17 @@ public class PositionsComponent extends FormComponent {
             public void changed(ObservableValue<? extends Position> observable, Position oldValue, Position newValue) {
                 editPositionList(primaryPositionField.getItems(), oldValue, newValue);
                 editPositionList(secondaryPositionField.getItems(), oldValue, newValue);
+                if (newValue != Position.NO_POSITION) {
+                    removePositionToken(secondaryPositionField,Position.NO_POSITION);
+                } else addPositionToken(secondaryPositionField,Position.NO_POSITION);
             }
         });
+    }
+
+    private void removePositionToken(ChoiceBox<Position> choiceBox, Position token) {
+        choiceBox.getItems().remove(token);
+    }
+    private void addPositionToken(ChoiceBox<Position> choiceBox, Position token) {
+        choiceBox.getItems().add(token);
     }
 }
