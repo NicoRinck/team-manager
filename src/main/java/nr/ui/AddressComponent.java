@@ -3,9 +3,7 @@ package nr.ui;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import nr.data_converter.AddressInputConverter;
 import nr.data_model.form_fields.address.Address;
 import nr.data_model.validator.AddressValidator;
@@ -31,16 +29,18 @@ public class AddressComponent extends GridFormComponent<Address> {
         this.init();
     }
 
+    private void fillTextFields(Address address) {
+        if (address != null) {
+            residenceField.setText(address.getResidence());
+            postCodeField.setText(address.getPostCode());
+            streetField.setText(address.getStreet());
+            houseNumberField.setText(Integer.toString(address.getHouseNumber()));
+        }
+    }
+
     private void init() {
         initTextFields();
         fillGrid();
-    }
-
-    private void fillTextFields(Address address) {
-        residenceField.setText(address.getResidence());
-        postCodeField.setText(address.getPostCode());
-        streetField.setText(address.getStreet());
-        houseNumberField.setText(Integer.toString(address.getHouseNumber()));
     }
 
     private void initTextFields() {
@@ -64,46 +64,32 @@ public class AddressComponent extends GridFormComponent<Address> {
     }
 
     @Override
-    protected void initGridConstraints() {
-        ColumnConstraints column1 = new ColumnConstraints(90);
-        column1.setHgrow(Priority.NEVER);
-        ColumnConstraints column2 = new ColumnConstraints();
-        column2.setFillWidth(false);
-        column2.setHgrow(Priority.ALWAYS);
-        ColumnConstraints column3 = new ColumnConstraints();
-        column3.setPercentWidth(40);
-        column3.setHgrow(Priority.SOMETIMES);
-        this.gridPane.getColumnConstraints().addAll(column1, column2, column3);
-
-    }
-
-    @Override
     protected void addErrorLabels() {
         this.gridPane.add(errorLabels[0], 2, 0);
         this.gridPane.add(errorLabels[1], 2, 1);
-        this.gridPane.add(errorLabels[2], 1,3);
-        this.gridPane.add(errorLabels[3], 2,3);
+        this.gridPane.add(errorLabels[2], 1, 3);
+        this.gridPane.add(errorLabels[3], 2, 3);
     }
 
     @Override
-    Optional<Address> getComponentValue() {
+    public Optional<Address> getComponentValue() {
         String residence = residenceField.getText().trim();
         String postCode = postCodeField.getText().trim();
         String street = streetField.getText().trim();
         String houseNumber = houseNumberField.getText().trim();
 
         AddressInputConverter addressInputConverter = new AddressInputConverter();
-        if (!residence.equals("") && addressInputConverter.setResidence(residence)) {
+        if (!residence.equals("") && !addressInputConverter.setResidence(residence)) {
             markInvalidFields(residenceField, errorLabels[0], NameStringValidator.getErrorMessage(residence));
         }
-        if (!postCode.equals("") && addressInputConverter.setPostCode(postCode)) {
+        if (!postCode.equals("") && !addressInputConverter.setPostCode(postCode)) {
             markInvalidFields(postCodeField, errorLabels[1], AddressValidator.getPostCodeErrorMessage(postCode));
         }
-        if (!street.equals("") && addressInputConverter.setStreet(street)) {
+        if (!street.equals("") && !addressInputConverter.setStreet(street)) {
             markInvalidFields(streetField, errorLabels[2], NameStringValidator.getErrorMessage(street));
         }
-        if (houseNumber.equals("") && addressInputConverter.setHouseNumber(houseNumber)) {
-            markInvalidFields(houseNumberField,errorLabels[3], "ungültige Hausnummer");
+        if (!houseNumber.equals("") && !addressInputConverter.setHouseNumber(houseNumber)) {
+            markInvalidFields(houseNumberField, errorLabels[3], "ungültige Hausnummer");
         }
         return addressInputConverter.convertInputToEntity();
     }

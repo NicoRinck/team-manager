@@ -28,12 +28,20 @@ public class PlayerAttributes implements EntityAttributes<Player> {
         return birthDate;
     }
 
-    public PlayerPositions getPositions() {
+    public PlayerPositions getPlayerPositions() {
         return this.playerPositions ;
     }
 
     public void setPlayerName(PlayerName playerName) {
         this.playerName = playerName;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Address getAddress() {
+        return address;
     }
 }
 

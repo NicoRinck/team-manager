@@ -7,10 +7,10 @@ public class NameStringValidator {
             return "ungültiges Zeichen!";
         }
         if (!hasEnoughCharacter(value)) {
-            return "mindestens 2 Zeichen!";
+            return "mindestens 2 Zeichen\nnotwendig!";
         }
         if (!startsWithUppercase(value)) {
-            return "Name muss mit einem Großbuchstaben beginnen!";
+            return "Name muss mit einem\nGroßbuchstaben beginnen!";
         }
         return "";
     }
@@ -20,11 +20,14 @@ public class NameStringValidator {
     }
 
     public static boolean consistOfValidCharacter(String value) {
-        return value.matches("[^0-9\\^\\~\\!\\@\\#\\$\\%\\^\\&\\*\\(\\)\\+\\=\\[\\{\\]\\}\\|\\\\\\<\\,\\>\\?\\/\\\"\\;\\:°\\_]*");
+        return value.matches("[^0-9\\^\\§\\~\\!\\@\\#\\$\\%\\^\\&\\*\\(\\)\\+\\=\\[\\{\\]\\}\\|\\\\\\<\\,\\>\\?\\/\\\"\\;\\:°\\_]*");
     }
 
     public static boolean startsWithUppercase(String value) {
-        return Character.isUpperCase(value.trim().charAt(0));
+        if (value.length()> 0) {
+            return Character.isUpperCase(value.trim().charAt(0));
+        }
+        return false;
     }
 
     public static boolean hasEnoughCharacter(String value) {

@@ -6,10 +6,10 @@ public class BirthDateValidator {
 
     public static String getErrorMessage(LocalDate birthDate) {
         if (isInFuture(birthDate)) {
-            return "Datum liegt in der Zukunft";
+            return "Datum liegt in der\nZukunft!";
         }
         if (isToOld(birthDate)) {
-            return "Datum liegt zu weit in der Vergangenheit";
+            return "Datum liegt zu weit\nin der Vergangenheit!";
         }
         return "";
     }

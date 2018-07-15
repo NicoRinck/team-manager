@@ -20,10 +20,10 @@ public class AddressValidator {
 
     public static String getPostCodeErrorMessage(String postCode) {
         if (postCode.length() != 5) {
-            return "Postleitzahl muss aus 5 Stellen bestehen";
+            return "Postleitzahl muss aus\n5 Stellen bestehen!";
         }
-        if (isInPostCodeRange(Integer.valueOf(postCode))) {
-            return "Die Postleitzahl ist ungültig";
+        if (!isInPostCodeRange(Integer.valueOf(postCode))) {
+            return "Die Postleitzahl ist ungültig!";
         }
         return "";
     }

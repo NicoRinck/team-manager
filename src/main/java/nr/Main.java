@@ -87,14 +87,17 @@ public class Main extends Application {
         Button button = new Button("Click");
         DatePicker datePicker = new DatePicker();
         datePicker.setValue(LocalDate.now());
+        PlayerAttributes playerAttributes = new PlayerAttributes(new PlayerName("Herbert", "Harry"),
+                new BirthDate(LocalDate.of(1993, 3, 18)),
+                positions1);
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-               PlayerForm playerForm = new PlayerForm();
-               playerForm.showAndWait();
+                PlayerForm playerForm = new PlayerForm(playerAttributes);
+                playerForm.showForm();
             }
         });
-        hBox.getChildren().addAll(button,datePicker);
+        hBox.getChildren().addAll(button, datePicker);
         tab2.setContent(hBox);
 
         tabPane.getTabs().addAll(tab, tab2);

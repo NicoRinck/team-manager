@@ -41,7 +41,7 @@ public class PlayerListCell extends ListCell<Player> {
                 }
 
                 if (position !=null) {
-                    /*position.setText(item.getPlayerAttributes().getPositions()[0].toString());*/
+                    /*position.setText(item.getPlayerAttributes().getPlayerPositions()[0].toString());*/
                     playerName.setText(item.getPlayerAttributes().getPlayerName().getNameString());
                     test1.setText("test1");
                     test2.setText("test2");

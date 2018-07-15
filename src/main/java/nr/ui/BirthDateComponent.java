@@ -33,7 +33,7 @@ public class BirthDateComponent extends FormComponent<BirthDate> {
 
     private void initComponent() {
         hBox.setSpacing(10);
-        hBox.setAlignment(Pos.BASELINE_LEFT);
+        hBox.setAlignment(Pos.CENTER_LEFT);
         hBox.getChildren().addAll(new Label("Geburtsdatum: "),datePicker,errorLabels[0]);
     }
 

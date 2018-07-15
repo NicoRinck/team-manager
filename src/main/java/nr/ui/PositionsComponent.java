@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import nr.data_model.form_fields.position.PlayerPositions;
 import nr.data_model.form_fields.position.Position;
-import nr.data_model.validator.PlayerPositionValidator;
 
 import java.util.Optional;
 
@@ -24,13 +23,13 @@ public class PositionsComponent extends FormComponent {
     private final ChoiceBox<Position> tertiaryPositionField = new ChoiceBox<>();
 
     public PositionsComponent() {
-        super(0);
+        super(1);
         fillChoiceBoxes();
         initView();
     }
 
     public PositionsComponent(PlayerPositions playerPositions) {
-        super(0);
+        super(1);
         fillChoiceBoxes(playerPositions);
         initView();
     }
@@ -56,7 +55,7 @@ public class PositionsComponent extends FormComponent {
 
     private void setInitValues(PlayerPositions playerPositions) {
         primaryPositionField.setValue(playerPositions.getPrimaryPosition());
-        secondaryPositionField.setValue(playerPositions.getPrimaryPosition());
+        secondaryPositionField.setValue(playerPositions.getSecondaryPosition());
         tertiaryPositionField.setValue(playerPositions.getTertiaryPosition());
     }
 
@@ -92,26 +91,27 @@ public class PositionsComponent extends FormComponent {
 
     private void initView() {
         initChoiceBoxes();
-        hBox.setAlignment(Pos.BASELINE_LEFT);
-        hBox.setSpacing(20);
+        hBox.setAlignment(Pos.CENTER_LEFT);
+        hBox.setSpacing(15);
         hBox.getChildren().addAll(new Label("Positionen: "), primaryPositionField,
-                secondaryPositionField, tertiaryPositionField);
+                secondaryPositionField, tertiaryPositionField, errorLabels[0]);
     }
 
     @Override
-    Optional getComponentValue() {
+    public Optional<PlayerPositions> getComponentValue() {
         final Position[] positions = {
                 primaryPositionField.getValue(),
                 secondaryPositionField.getValue(),
                 tertiaryPositionField.getValue()};
 
-        if (PlayerPositionValidator.previousPositionDefined(positions)) {
+        if (positions[0] != Position.NO_POSITION) {
             PlayerPositions playerPositions = new PlayerPositions(positions[0]);
             playerPositions.setSecondaryPosition(positions[1]);
             playerPositions.setTertiaryPosition(positions[2]);
 
             return Optional.of(playerPositions);
         }
+        markInvalidFields(primaryPositionField,errorLabels[0], "mindestens eine Position\nmuss gesetzt sein!");
         return Optional.empty();
     }
 
