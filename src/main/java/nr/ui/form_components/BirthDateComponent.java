@@ -1,4 +1,4 @@
-package nr.ui;
+package nr.ui.form_components;
 
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import nr.data_model.form_fields.BirthDate;
 import nr.data_model.validator.BirthDateValidator;
+import nr.ui.form_components.FormComponent;
 
 import java.time.LocalDate;
 import java.util.Optional;

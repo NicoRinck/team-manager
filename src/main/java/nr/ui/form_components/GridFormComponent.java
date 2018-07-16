@@ -1,9 +1,10 @@
-package nr.ui;
+package nr.ui.form_components;
 
 import javafx.scene.Node;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
+import nr.ui.form_components.FormComponent;
 
 import java.util.Optional;
 

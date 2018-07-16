@@ -1,15 +1,16 @@
-package nr;
+package nr.ui;
 
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.layout.VBox;
+import nr.Form;
 import nr.data_converter.PlayerAttributesInputConverter;
 import nr.data_model.entities.player.PlayerAttributes;
-import nr.ui.AddressComponent;
-import nr.ui.BirthDateComponent;
-import nr.ui.PlayerNameComponent;
-import nr.ui.PositionsComponent;
+import nr.ui.form_components.AddressComponent;
+import nr.ui.form_components.BirthDateComponent;
+import nr.ui.form_components.PlayerNameComponent;
+import nr.ui.form_components.PositionsComponent;
 
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package nr.ui;
+package nr.ui.form_components;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;

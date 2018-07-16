@@ -19,6 +19,7 @@ import nr.data_model.form_fields.BirthDate;
 import nr.data_model.form_fields.PlayerName;
 import nr.data_model.form_fields.position.PlayerPositions;
 import nr.data_model.form_fields.position.Position;
+import nr.ui.PlayerForm;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

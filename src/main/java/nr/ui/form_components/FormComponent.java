@@ -1,4 +1,4 @@
-package nr.ui;
+package nr.ui.form_components;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
