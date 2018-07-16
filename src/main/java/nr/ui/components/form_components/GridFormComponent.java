@@ -1,10 +1,10 @@
-package nr.ui.form_components;
+package nr.ui.components.form_components;
 
 import javafx.scene.Node;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-import nr.ui.form_components.FormComponent;
+import nr.ui.components.form_components.FormComponent;
 
 import java.util.Optional;
 
@@ -49,6 +49,6 @@ public abstract class GridFormComponent<T> extends FormComponent<T> {
         return this.gridPane;
     }
 
-    abstract Optional<T> getComponentValue();
+    abstract Optional<T> getFormComponentValue();
 
 }

@@ -1,4 +1,4 @@
-package nr.ui.form_components;
+package nr.ui.components.form_components;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -98,7 +98,7 @@ public class PositionsComponent extends FormComponent {
     }
 
     @Override
-    public Optional<PlayerPositions> getComponentValue() {
+    public Optional<PlayerPositions> getFormComponentValue() {
         final Position[] positions = {
                 primaryPositionField.getValue(),
                 secondaryPositionField.getValue(),

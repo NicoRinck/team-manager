@@ -1,15 +1,14 @@
-package nr.ui.form_components;
+package nr.ui.components.form_components;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import nr.ui.components.Component;
 
 import java.util.Optional;
 
-public abstract class FormComponent<T> {
+public abstract class FormComponent<T> implements Component {
 
     protected final int amountOfErrorFields;
     protected Label[] errorLabels;
@@ -47,19 +46,15 @@ public abstract class FormComponent<T> {
     }
 
     static void forceNumericInput(TextField textField) {
-        textField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    textField.setText(newValue.replaceAll("[^\\d]", ""));
-                }
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                textField.setText(newValue.replaceAll("[^\\d]", ""));
             }
         });
     }
 
-    abstract Optional<T> getComponentValue();
+    abstract Optional<T> getFormComponentValue();
 
-    abstract Node getComponent();
+    abstract public Node getComponent();
 
 }

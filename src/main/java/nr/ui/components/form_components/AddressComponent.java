@@ -1,4 +1,4 @@
-package nr.ui.form_components;
+package nr.ui.components.form_components;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -72,7 +72,7 @@ public class AddressComponent extends GridFormComponent<Address> {
     }
 
     @Override
-    public Optional<Address> getComponentValue() {
+    public Optional<Address> getFormComponentValue() {
         String residence = residenceField.getText().trim();
         String postCode = postCodeField.getText().trim();
         String street = streetField.getText().trim();

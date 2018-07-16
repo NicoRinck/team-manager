@@ -1,9 +1,10 @@
-package nr.ui.form_components;
+package nr.ui.components.form_components;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import nr.data_model.form_fields.PlayerName;
 import nr.data_model.validator.NameStringValidator;
+import nr.ui.components.form_components.GridFormComponent;
 
 import java.util.Optional;
 
@@ -41,7 +42,7 @@ public class PlayerNameComponent extends GridFormComponent<PlayerName> {
     }
 
     @Override
-    public Optional<PlayerName> getComponentValue() {
+    public Optional<PlayerName> getFormComponentValue() {
         String forename = forenameField.getText().trim();
         String surname = surnameField.getText().trim();
 

@@ -1,9 +1,6 @@
 package nr;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -12,7 +9,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import nr.data_model.entities.player.Player;
 import nr.data_model.entities.player.PlayerAttributes;
 import nr.data_model.form_fields.BirthDate;
@@ -20,6 +16,8 @@ import nr.data_model.form_fields.PlayerName;
 import nr.data_model.form_fields.position.PlayerPositions;
 import nr.data_model.form_fields.position.Position;
 import nr.ui.PlayerForm;
+import nr.ui.components.EntityList;
+import nr.ui.components.PlayerListCell;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -32,7 +30,6 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -56,29 +53,21 @@ public class Main extends Application {
                 new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
         players.add(new Player(new PlayerAttributes(new PlayerName("Lucas", "Harry"),
                 new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
-        final ObservableList<Player> observedPlayers = FXCollections.observableArrayList();
-        observedPlayers.addAll(players);
-        observedPlayers.addListener(new ListChangeListener<Player>() {
+       /* observedPlayers.addListener(new ListChangeListener<Player>() {
             @Override
             public void onChanged(Change<? extends Player> c) {
                 System.out.println("im am callled");
 
             }
-        });
-        final ListView<Player> listView = new ListView<>(observedPlayers);
+        });*/
 
-        listView.setCellFactory(new Callback<ListView<Player>, ListCell<Player>>() {
-            @Override
-            public ListCell<Player> call(ListView<Player> studentListView) {
-                return new PlayerListCell();
-            }
-        });
+        EntityList<Player> entityList = new EntityList<>(players, new PlayerListCell());
 
         Tab tab = new Tab();
         Tab tab2 = new Tab();
 
         tab.setText("new tab");
-        tab.setContent(listView);
+        tab.setContent(entityList.getComponent());
 
         tab2.setText("new tab");
         tab2.setContent(new Rectangle(200, 200, Color.ROSYBROWN));

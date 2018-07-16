@@ -1,4 +1,4 @@
-package nr.ui.form_components;
+package nr.ui.components.form_components;
 
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import nr.data_model.form_fields.BirthDate;
 import nr.data_model.validator.BirthDateValidator;
-import nr.ui.form_components.FormComponent;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -39,7 +38,7 @@ public class BirthDateComponent extends FormComponent<BirthDate> {
     }
 
     @Override
-    public Optional<BirthDate> getComponentValue() {
+    public Optional<BirthDate> getFormComponentValue() {
         LocalDate date = datePicker.getValue();
         if (BirthDateValidator.isValidBirthDate(date)){
             return Optional.of(new BirthDate(date));

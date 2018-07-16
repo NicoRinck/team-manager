@@ -1,4 +1,4 @@
-package nr;
+package nr.ui.components;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,9 +9,9 @@ import nr.data_model.entities.player.Player;
 
 import java.io.IOException;
 
-public class PlayerListCell extends ListCell<Player> {
+public class PlayerListCell extends ListCell<Player> implements ListItemStrategy<Player> {
 
-    FXMLLoader loader = null;
+    private FXMLLoader loader = null;
     @FXML private Label playerName;
     @FXML private Label position;
     @FXML private Label test1;
@@ -19,6 +19,10 @@ public class PlayerListCell extends ListCell<Player> {
     @FXML private Label birthDate;
     @FXML private GridPane gridPane;
 
+    @Override
+    public ListCell<Player> getStrategy() {
+        return new PlayerListCell();
+    }
 
     @Override
     protected void updateItem(Player item, boolean empty) {
@@ -41,7 +45,6 @@ public class PlayerListCell extends ListCell<Player> {
                 }
 
                 if (position !=null) {
-                    /*position.setText(item.getPlayerAttributes().getPlayerPositions()[0].toString());*/
                     playerName.setText(item.getPlayerAttributes().getPlayerName().getNameString());
                     test1.setText("test1");
                     test2.setText("test2");

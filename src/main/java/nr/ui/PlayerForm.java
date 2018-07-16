@@ -7,10 +7,10 @@ import javafx.scene.layout.VBox;
 import nr.Form;
 import nr.data_converter.PlayerAttributesInputConverter;
 import nr.data_model.entities.player.PlayerAttributes;
-import nr.ui.form_components.AddressComponent;
-import nr.ui.form_components.BirthDateComponent;
-import nr.ui.form_components.PlayerNameComponent;
-import nr.ui.form_components.PositionsComponent;
+import nr.ui.components.form_components.AddressComponent;
+import nr.ui.components.form_components.BirthDateComponent;
+import nr.ui.components.form_components.PlayerNameComponent;
+import nr.ui.components.form_components.PositionsComponent;
 
 import java.util.Optional;
 
@@ -70,10 +70,10 @@ public class PlayerForm implements Form<PlayerAttributes> {
         dialog.setResultConverter((ButtonType) -> {
             if (ButtonType == okButton) {
                 PlayerAttributesInputConverter inputConverter = new PlayerAttributesInputConverter();
-                playerNameGrid.getComponentValue().ifPresent(inputConverter::setPlayerName);
-                birthDateComponent.getComponentValue().ifPresent(inputConverter::setBirthDate);
-                positionsComponent.getComponentValue().ifPresent(inputConverter::setPlayerPositions);
-                addressComponent.getComponentValue().ifPresent(inputConverter::setAddress);
+                playerNameGrid.getFormComponentValue().ifPresent(inputConverter::setPlayerName);
+                birthDateComponent.getFormComponentValue().ifPresent(inputConverter::setBirthDate);
+                positionsComponent.getFormComponentValue().ifPresent(inputConverter::setPlayerPositions);
+                addressComponent.getFormComponentValue().ifPresent(inputConverter::setAddress);
                 if (inputConverter.convertInputToEntity().isPresent()) {
                     return inputConverter.convertInputToEntity().get();
                 }
