@@ -4,7 +4,10 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -18,6 +21,9 @@ import nr.data_model.form_fields.position.Position;
 import nr.ui.PlayerForm;
 import nr.ui.components.EntityList;
 import nr.ui.components.PlayerListCell;
+import nr.ui.event_handler.AddEntityHandler;
+import nr.ui.event_handler.OpenDetailsHandler;
+import nr.ui.views.EntityListView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -61,13 +67,14 @@ public class Main extends Application {
             }
         });*/
 
-        EntityList<Player> entityList = new EntityList<>(players, new PlayerListCell());
+        EntityList<Player> entityList = new EntityList<>(players, new PlayerListCell(), new OpenDetailsHandler<Player>());
+        EntityListView<Player> entityListView = new EntityListView<>(entityList, new Button("add"), new AddEntityHandler<>());
 
         Tab tab = new Tab();
         Tab tab2 = new Tab();
 
         tab.setText("new tab");
-        tab.setContent(entityList.getComponent());
+        tab.setContent(entityListView.getView());
 
         tab2.setText("new tab");
         tab2.setContent(new Rectangle(200, 200, Color.ROSYBROWN));

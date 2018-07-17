@@ -4,7 +4,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import nr.data_model.form_fields.PlayerName;
 import nr.data_model.validator.NameStringValidator;
-import nr.ui.components.form_components.GridFormComponent;
 
 import java.util.Optional;
 
