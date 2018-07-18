@@ -4,6 +4,7 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.layout.VBox;
+import javafx.stage.StageStyle;
 import nr.Form;
 import nr.data_converter.PlayerAttributesInputConverter;
 import nr.data_model.entities.player.PlayerAttributes;
@@ -49,6 +50,7 @@ public class PlayerForm implements Form<PlayerAttributes> {
 
 
     private void initForm() {
+        dialog.initStyle(StageStyle.UTILITY);
         dialog.setTitle(getDialogTitle());
         VBox vBox = new VBox();
         vBox.setPrefWidth(500);
@@ -85,9 +87,9 @@ public class PlayerForm implements Form<PlayerAttributes> {
 
     private String getDialogTitle() {
         if (this.playerAttributes == null) {
-            return "Spieler erstellen";
+            return "  Spieler erstellen";
         }
-        return playerAttributes.getPlayerName().getNameString();
+        return "  " + playerAttributes.getPlayerName().getNameString();
     }
 
     @Override

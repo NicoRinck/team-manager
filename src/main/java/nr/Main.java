@@ -12,6 +12,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import nr.data_access_layer.H2DatabaseConnection;
+import nr.data_access_layer.entity_database_strategy.PlayerDatabaseStrategy;
 import nr.data_model.entities.player.Player;
 import nr.data_model.entities.player.PlayerAttributes;
 import nr.data_model.form_fields.BirthDate;
@@ -24,14 +26,12 @@ import nr.ui.components.PlayerListCell;
 import nr.ui.event_handler.AddEntityHandler;
 import nr.ui.event_handler.OpenDetailsHandler;
 import nr.ui.views.EntityListView;
+import nr.ui.views.PlayerDetailView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 
-/**
- * Hello world!
- */
 public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
@@ -67,7 +67,19 @@ public class Main extends Application {
             }
         });*/
 
-        EntityList<Player> entityList = new EntityList<>(players, new PlayerListCell(), new OpenDetailsHandler<Player>());
+        H2DatabaseConnection h2DatabaseConnection = new H2DatabaseConnection();
+        PlayerDatabaseStrategy playerDatabaseStrategy = new PlayerDatabaseStrategy(h2DatabaseConnection);
+        playerDatabaseStrategy.getEntities();
+
+
+
+
+
+  /*      Player player1 = new Player(new PlayerAttributes(new PlayerName("Ben", "Loris"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1));
+        Player player2 = new Player(new PlayerAttributes(new PlayerName("Dieter", "Bens"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1));
+        Player player3 = new Player(new PlayerAttributes(new PlayerName("Dieter", "Bens"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1));*/
+
+        EntityList<Player> entityList = new EntityList<>(players, new PlayerListCell(), new OpenDetailsHandler<Player>(new PlayerDetailView()));
         EntityListView<Player> entityListView = new EntityListView<>(entityList, new Button("add"), new AddEntityHandler<>());
 
         Tab tab = new Tab();
