@@ -26,12 +26,12 @@ public class DataManager<T extends Entity> {
         }
     }
 
-    public void editEntity(T oldEntity) {
-
+    public void editEntity(T entity) {
+        entityDatabaseStrategy.editEntity(entity);
     }
 
     public void deleteEntity(T entity) {
-
+        entityDatabaseStrategy.deleteEntity(entity);
     }
 
 

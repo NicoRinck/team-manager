@@ -1,14 +1,10 @@
 package nr.ui.views;
 
-import nr.data_model.entities.player.Player;
+import nr.data_model.entities.Entity;
 
-import java.awt.*;
-
-public class PlayerDetailView implements EntityDetailView<Player> {
-
-
-    private final Button editPlayer = new Button();
+public class PlayerDetailView implements EntityDetailView {
     @Override
-    public void showDetailView(Player entity) {
+    public void showDetailView(Entity entity) {
+
     }
 }

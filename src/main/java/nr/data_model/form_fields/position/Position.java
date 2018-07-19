@@ -17,7 +17,7 @@ public enum Position {
     MS("MS"),
     ST("ST");
 
-    String text;
+    private final String text;
     Position(String text) {
         this.text = text;
     }

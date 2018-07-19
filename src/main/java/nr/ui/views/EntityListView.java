@@ -2,6 +2,7 @@ package nr.ui.views;
 
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import nr.data_model.entities.Entity;
 import nr.ui.components.EntityList;
@@ -23,7 +24,9 @@ public class EntityListView<T extends Entity> implements View {
 
     private void initView() {
         initButton();
-        vBox.getChildren().addAll(addEntityButton,entityList.getComponent());
+        vBox.setPrefWidth(400);
+        ListView<T> listView = entityList.getComponent();
+        vBox.getChildren().addAll(addEntityButton,listView);
     }
 
     private void initButton() {

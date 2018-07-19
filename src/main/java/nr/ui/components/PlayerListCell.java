@@ -12,12 +12,14 @@ import java.io.IOException;
 public class PlayerListCell extends ListCell<Player> implements ListItemStrategy<Player> {
 
     private FXMLLoader loader = null;
-    @FXML private Label playerName;
-    @FXML private Label position;
-    @FXML private Label test1;
-    @FXML private Label test2;
-    @FXML private Label birthDate;
-    @FXML private GridPane gridPane;
+    @FXML
+    private Label playerName;
+    @FXML
+    private Label position;
+    @FXML
+    private Label age;
+    @FXML
+    private GridPane gridPane;
 
     @Override
     public ListCell<Player> getStrategy() {
@@ -44,12 +46,9 @@ public class PlayerListCell extends ListCell<Player> implements ListItemStrategy
                     e.printStackTrace();
                 }
 
-                if (position !=null) {
-                    playerName.setText(item.getPlayerAttributes().getPlayerName().getNameString());
-                    test1.setText("test1");
-                    test2.setText("test2");
-                    birthDate.setText("Date");
-                }
+                playerName.setText("  " + item.getPlayerAttributes().getPlayerName().getNameString());
+                age.setText(item.getPlayerAttributes().getBirthDate().getAge() + "");
+                position.setText(item.getPlayerAttributes().getPlayerPositions().getPrimaryPosition().toString());
 
                 setText(null);
                 setGraphic(gridPane);

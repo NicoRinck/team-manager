@@ -52,15 +52,15 @@ public class Main extends Application {
                 new BirthDate(LocalDate.of(1993, 3, 18)),
                 positions1)));
         players.add(new Player(new PlayerAttributes(new PlayerName("Ben", "Loris"),
-                new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
+                new BirthDate(LocalDate.of(1993, 3, 18)), new PlayerPositions(Position.LF))));
         players.add(new Player(new PlayerAttributes(new PlayerName("Dieter", "Bens"),
-                new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
+                new BirthDate(LocalDate.of(1993, 3, 18)), new PlayerPositions(Position.LIB))));
         players.add(new Player(new PlayerAttributes(new PlayerName("Floyd", "Teuchert"),
-                new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
+                new BirthDate(LocalDate.of(1993, 3, 18)), new PlayerPositions(Position.ZDM))));
         players.add(new Player(new PlayerAttributes(new PlayerName("Dancil", "Harrison"),
-                new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
+                new BirthDate(LocalDate.of(1993, 3, 18)), new PlayerPositions(Position.TW))));
         players.add(new Player(new PlayerAttributes(new PlayerName("Lucas", "Harry"),
-                new BirthDate(LocalDate.of(1993, 3, 18)), positions1)));
+                new BirthDate(LocalDate.of(1993, 3, 18)), new PlayerPositions(Position.LM))));
        /* observedPlayers.addListener(new ListChangeListener<Player>() {
             @Override
             public void onChanged(Change<? extends Player> c) {
@@ -74,8 +74,6 @@ public class Main extends Application {
         Player player3 = new Player(new PlayerAttributes(new PlayerName("Dieter", "Bens"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1));
         player1.getPlayerAttributes().setAddress(AddressBuilder.residence("Schaidt").build());
 
-
-
         H2DatabaseConnection h2DatabaseConnection = new H2DatabaseConnection();
         JsonDatabaseStrategy<Player> jsonDatabaseStrategy = new JsonDatabaseStrategy<>(h2DatabaseConnection,Player.class);
         jsonDatabaseStrategy.saveEntity(player1);
@@ -87,10 +85,6 @@ public class Main extends Application {
         JsonDatabaseStrategy<Player> jsonDatabaseStrategy2 = new JsonDatabaseStrategy<>(h2DatabaseConnection1,Player.class);
         List<Player> players2 = jsonDatabaseStrategy2.getEntities();
         players2.forEach(player -> System.out.println(player.getPlayerAttributes().getPlayerName().getNameString()));
-
-
-
-
 
         EntityList<Player> entityList = new EntityList<>(players, new PlayerListCell(), new OpenDetailsHandler<Player>(new PlayerDetailView()));
         EntityListView<Player> entityListView = new EntityListView<>(entityList, new Button("add"), new AddEntityHandler<>());
