@@ -7,17 +7,26 @@ import java.util.List;
 
 public class DataManager<T extends Entity> {
 
-    EntityDatabaseStrategy<T> entityDatabaseStrategy;
+    private final EntityDatabaseStrategy<T> entityDatabaseStrategy;
+    private final List<T> entityList;
+
+    public DataManager(EntityDatabaseStrategy<T> entityDatabaseStrategy) {
+        this.entityDatabaseStrategy = entityDatabaseStrategy;
+        entityList = getEntities();
+    }
 
     public List<T> getEntities() {
-        return null;
+        return entityDatabaseStrategy.getEntities();
     }
 
     public void saveEntity(T entity) {
-
+        if (entityList.contains(entity) && entity != null) {
+            this.entityList.add(entity);
+            entityDatabaseStrategy.saveEntity(entity);
+        }
     }
 
-    public void editEntity(T entity) {
+    public void editEntity(T oldEntity) {
 
     }
 

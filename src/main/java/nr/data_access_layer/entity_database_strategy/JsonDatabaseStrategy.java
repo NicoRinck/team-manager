@@ -127,5 +127,26 @@ public class JsonDatabaseStrategy<T extends Entity> implements EntityDatabaseStr
 
     }
 
+    @Override
+    public void editEntity(T entity) {
+        Integer indexOfEntity = getIndexOfEntity(entity);
+        if (indexOfEntity != -1 && entity != null) {
+            String json = jsonConverter.getJsonFromEntity(entity);
+            editEntityInDatabase(indexOfEntity,json);
+        }
+    }
 
+    private void editEntityInDatabase(Integer id, String newValue) {
+        Connection connection = databaseConnection.getConnectionToDB();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "UPDATE " + tableName + " SET json = ? WHERE id = ?"
+            );
+            preparedStatement.setString(1,newValue);
+            preparedStatement.setInt(2,id);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

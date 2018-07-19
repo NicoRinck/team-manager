@@ -8,5 +8,6 @@ public interface EntityDatabaseStrategy<T extends Entity> {
 
     List<T> getEntities();
     void saveEntity(T entity);
+    void editEntity(T entity);
     void deleteEntity(T entity);
 }
