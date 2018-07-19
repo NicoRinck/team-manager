@@ -4,7 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import nr.data_converter.AddressInputConverter;
+import nr.data_converter.user_input_converter.AddressInputConverter;
 import nr.data_model.form_fields.address.Address;
 import nr.data_model.validator.AddressValidator;
 import nr.data_model.validator.NameStringValidator;

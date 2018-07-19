@@ -6,7 +6,7 @@ import javafx.scene.control.Dialog;
 import javafx.scene.layout.VBox;
 import javafx.stage.StageStyle;
 import nr.Form;
-import nr.data_converter.PlayerAttributesInputConverter;
+import nr.data_converter.user_input_converter.PlayerAttributesInputConverter;
 import nr.data_model.entities.player.PlayerAttributes;
 import nr.ui.components.form_components.AddressComponent;
 import nr.ui.components.form_components.BirthDateComponent;

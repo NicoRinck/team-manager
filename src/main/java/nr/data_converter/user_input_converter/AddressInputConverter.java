@@ -1,4 +1,4 @@
-package nr.data_converter;
+package nr.data_converter.user_input_converter;
 
 import nr.data_model.form_fields.address.Address;
 import nr.data_model.form_fields.address.AddressBuilder;

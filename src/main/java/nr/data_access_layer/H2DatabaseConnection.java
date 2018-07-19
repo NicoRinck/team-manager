@@ -29,6 +29,15 @@ public class H2DatabaseConnection implements DatabaseConnection {
     }
 
     @Override
+    public void closeConnection() {
+        try {
+            this.conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public Connection getConnectionToDB() {
         return conn;
     }

@@ -12,8 +12,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import nr.data_access_layer.H2DatabaseConnection;
-import nr.data_access_layer.entity_database_strategy.PlayerDatabaseStrategy;
 import nr.data_model.entities.player.Player;
 import nr.data_model.entities.player.PlayerAttributes;
 import nr.data_model.form_fields.BirthDate;
@@ -30,6 +28,7 @@ import nr.ui.views.PlayerDetailView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class Main extends Application {
@@ -66,18 +65,34 @@ public class Main extends Application {
 
             }
         });*/
+        HashMap<Integer,String> hashMap = new HashMap<>();
+        hashMap.put(1,"1");
+        hashMap.put(2,"2");
+        hashMap.put(3,"3");
+        hashMap.put(4,"4");
+
+        hashMap.forEach((integer, s) -> System.out.println(integer + " --> " + s));
+
+      /*  Player player1 = new Player(new PlayerAttributes(new PlayerName("Ben", "Loris"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1));
+        Player player2 = new Player(new PlayerAttributes(new PlayerName("Dieter", "Bens"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1));
+        Player player3 = new Player(new PlayerAttributes(new PlayerName("Dieter", "Bens"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1));
+
 
         H2DatabaseConnection h2DatabaseConnection = new H2DatabaseConnection();
-        PlayerDatabaseStrategy playerDatabaseStrategy = new PlayerDatabaseStrategy(h2DatabaseConnection);
-        playerDatabaseStrategy.getEntities();
+        JsonDatabaseStrategy<Player> jsonDatabaseStrategy = new JsonDatabaseStrategy<>(h2DatabaseConnection,Player.class);
+        jsonDatabaseStrategy.saveEntity(player1);
+        jsonDatabaseStrategy.saveEntity(player2);
+        jsonDatabaseStrategy.saveEntity(player3);
+        h2DatabaseConnection.closeConnection();
+
+        H2DatabaseConnection h2DatabaseConnection1 = new H2DatabaseConnection();
+        JsonDatabaseStrategy<Player> jsonDatabaseStrategy2 = new JsonDatabaseStrategy<>(h2DatabaseConnection1,Player.class);
+        List<Player> players2 = jsonDatabaseStrategy2.getEntities();
+        players2.forEach(player -> System.out.println(player.getPlayerAttributes().getPlayerName().getNameString()));*/
 
 
 
 
-
-  /*      Player player1 = new Player(new PlayerAttributes(new PlayerName("Ben", "Loris"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1));
-        Player player2 = new Player(new PlayerAttributes(new PlayerName("Dieter", "Bens"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1));
-        Player player3 = new Player(new PlayerAttributes(new PlayerName("Dieter", "Bens"), new BirthDate(LocalDate.of(1993, 3, 18)), positions1));*/
 
         EntityList<Player> entityList = new EntityList<>(players, new PlayerListCell(), new OpenDetailsHandler<Player>(new PlayerDetailView()));
         EntityListView<Player> entityListView = new EntityListView<>(entityList, new Button("add"), new AddEntityHandler<>());

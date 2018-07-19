@@ -1,4 +1,4 @@
-package nr.data_converter;
+package nr.data_converter.user_input_converter;
 
 import java.util.Optional;
 
