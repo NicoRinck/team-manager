@@ -6,5 +6,6 @@ import java.util.Optional;
 
 public interface Form<T extends EntityAttributes> {
 
-    Optional<T> showForm();
+    Optional<T> showCreateAttributesForm();
+    Optional<T> showEditAttributesForm(T entityAttributes);
 }

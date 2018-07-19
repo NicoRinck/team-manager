@@ -106,12 +106,15 @@ public class PositionsComponent extends FormComponent {
 
         if (positions[0] != Position.NO_POSITION) {
             PlayerPositions playerPositions = new PlayerPositions(positions[0]);
-            playerPositions.setSecondaryPosition(positions[1]);
-            playerPositions.setTertiaryPosition(positions[2]);
-
+            if (positions[1] != Position.NO_POSITION) {
+                playerPositions.setSecondaryPosition(positions[1]);
+                if (positions[2] != Position.NO_POSITION) {
+                    playerPositions.setTertiaryPosition(positions[2]);
+                }
+            }
             return Optional.of(playerPositions);
         }
-        markInvalidFields(primaryPositionField,errorLabels[0], "mindestens eine Position\nmuss gesetzt sein!");
+        markInvalidFields(primaryPositionField, errorLabels[0], "mindestens eine Position\nmuss gesetzt sein!");
         return Optional.empty();
     }
 
@@ -165,8 +168,8 @@ public class PositionsComponent extends FormComponent {
                 editPositionList(primaryPositionField.getItems(), oldValue, newValue);
                 editPositionList(secondaryPositionField.getItems(), oldValue, newValue);
                 if (newValue != Position.NO_POSITION) {
-                    removePositionToken(secondaryPositionField,Position.NO_POSITION);
-                } else addPositionToken(secondaryPositionField,Position.NO_POSITION);
+                    removePositionToken(secondaryPositionField, Position.NO_POSITION);
+                } else addPositionToken(secondaryPositionField, Position.NO_POSITION);
             }
         });
     }
@@ -174,6 +177,7 @@ public class PositionsComponent extends FormComponent {
     private void removePositionToken(ChoiceBox<Position> choiceBox, Position token) {
         choiceBox.getItems().remove(token);
     }
+
     private void addPositionToken(ChoiceBox<Position> choiceBox, Position token) {
         choiceBox.getItems().add(token);
     }

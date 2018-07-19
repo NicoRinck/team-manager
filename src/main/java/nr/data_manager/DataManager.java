@@ -20,7 +20,7 @@ public class DataManager<T extends Entity> {
     }
 
     public void saveEntity(T entity) {
-        if (entityList.contains(entity) && entity != null) {
+        if (!entityList.contains(entity) && entity != null) {
             this.entityList.add(entity);
             entityDatabaseStrategy.saveEntity(entity);
         }

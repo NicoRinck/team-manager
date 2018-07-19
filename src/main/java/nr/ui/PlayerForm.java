@@ -8,10 +8,7 @@ import javafx.stage.StageStyle;
 import nr.Form;
 import nr.data_converter.user_input_converter.PlayerAttributesInputConverter;
 import nr.data_model.entities.player.PlayerAttributes;
-import nr.ui.components.form_components.AddressComponent;
-import nr.ui.components.form_components.BirthDateComponent;
-import nr.ui.components.form_components.PlayerNameComponent;
-import nr.ui.components.form_components.PositionsComponent;
+import nr.ui.components.form_components.*;
 
 import java.util.Optional;
 
@@ -19,10 +16,10 @@ public class PlayerForm implements Form<PlayerAttributes> {
 
 
     private final Dialog<PlayerAttributes> dialog = new Dialog<>();
-    private final PlayerNameComponent playerNameGrid;
-    private final BirthDateComponent birthDateComponent;
-    private final PositionsComponent positionsComponent;
-    private final AddressComponent addressComponent;
+    private PlayerNameComponent playerNameGrid;
+    private BirthDateComponent birthDateComponent;
+    private PositionsComponent positionsComponent;
+    private AddressComponent addressComponent;
 
     private final ButtonType okButton = new ButtonType("Speichern", ButtonBar.ButtonData.APPLY);
     private final ButtonType exitButton = new ButtonType("Abbrechen", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -30,42 +27,16 @@ public class PlayerForm implements Form<PlayerAttributes> {
 
     private boolean active = true;
 
-    public PlayerForm(PlayerAttributes playerAttributes) {
-        this.playerAttributes = playerAttributes;
-        playerNameGrid = new PlayerNameComponent(playerAttributes.getPlayerName());
-        birthDateComponent = new BirthDateComponent(playerAttributes.getBirthDate());
-        positionsComponent = new PositionsComponent(playerAttributes.getPlayerPositions());
-        addressComponent = new AddressComponent(playerAttributes.getAddress());
-        initForm();
-    }
-
-    public PlayerForm() {
-        playerNameGrid = new PlayerNameComponent();
-        birthDateComponent = new BirthDateComponent();
-        positionsComponent = new PositionsComponent();
-        addressComponent = new AddressComponent();
-        initForm();
-    }
-
-
-
-    private void initForm() {
+    private void initDialog() {
         dialog.initStyle(StageStyle.UTILITY);
         dialog.setTitle(getDialogTitle());
-        VBox vBox = new VBox();
-        vBox.setPrefWidth(500);
-        vBox.setSpacing(20);
-        vBox.getChildren().addAll(playerNameGrid.getComponent(), birthDateComponent.getComponent(),
-                positionsComponent.getComponent(), addressComponent.getComponent());
-        dialog.getDialogPane().setContent(vBox);
         this.initButtons();
+        setResultConverter();
     }
 
     private void initButtons() {
-
         dialog.getDialogPane().getButtonTypes().add(okButton);
         dialog.getDialogPane().getButtonTypes().add(exitButton);
-        setResultConverter();
     }
 
     private void setResultConverter() {
@@ -93,7 +64,38 @@ public class PlayerForm implements Form<PlayerAttributes> {
     }
 
     @Override
-    public Optional<PlayerAttributes> showForm() {
+    public Optional<PlayerAttributes> showCreateAttributesForm() {
+        playerNameGrid = new PlayerNameComponent();
+        birthDateComponent = new BirthDateComponent();
+        positionsComponent = new PositionsComponent();
+        addressComponent = new AddressComponent();
+        this.initForm(playerNameGrid,birthDateComponent,positionsComponent,addressComponent);
+        return showForm();
+    }
+
+    @Override
+    public Optional<PlayerAttributes> showEditAttributesForm(PlayerAttributes entityAttributes) {
+        this.playerAttributes = entityAttributes;
+        playerNameGrid = new PlayerNameComponent(playerAttributes.getPlayerName());
+        birthDateComponent = new BirthDateComponent(playerAttributes.getBirthDate());
+        positionsComponent = new PositionsComponent(playerAttributes.getPlayerPositions());
+        addressComponent = new AddressComponent(playerAttributes.getAddress());
+        this.initForm(playerNameGrid,birthDateComponent,positionsComponent,addressComponent);
+        return showForm();
+    }
+
+    private void initForm(FormComponent... formComponents) {
+        VBox vBox = new VBox();
+        vBox.setPrefWidth(500);
+        vBox.setSpacing(20);
+        for (FormComponent formComponent : formComponents) {
+            vBox.getChildren().add(formComponent.getComponent());
+        }
+        dialog.getDialogPane().setContent(vBox);
+        this.initDialog();
+    }
+
+    private Optional<PlayerAttributes> showForm() {
         this.active = true;
         Optional<PlayerAttributes> optional = Optional.empty();
         while (!optional.isPresent() && active) {
@@ -101,4 +103,5 @@ public class PlayerForm implements Form<PlayerAttributes> {
         }
         return optional;
     }
+
 }

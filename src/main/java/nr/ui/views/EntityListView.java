@@ -6,16 +6,16 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import nr.data_model.entities.Entity;
 import nr.ui.components.EntityList;
-import nr.ui.event_handler.AddEntityHandler;
+import nr.ui.event_handler.AddEntityToListHandler;
 
 public class EntityListView<T extends Entity> implements View {
 
     private final VBox vBox = new VBox();
     private final EntityList<T> entityList;
     private final Button addEntityButton;
-    private final AddEntityHandler<T> addEntityHandler;
+    private final AddEntityToListHandler<T> addEntityHandler;
 
-    public EntityListView(EntityList<T> entityList, Button addEntityButton, AddEntityHandler<T> addEntityHandler) {
+    public EntityListView(EntityList<T> entityList, Button addEntityButton, AddEntityToListHandler<T> addEntityHandler) {
         this.entityList = entityList;
         this.addEntityButton = addEntityButton;
         this.addEntityHandler = addEntityHandler;
@@ -31,7 +31,7 @@ public class EntityListView<T extends Entity> implements View {
 
     private void initButton() {
         addEntityButton.setOnMouseClicked( event ->  {
-            addEntityHandler.addEntityToList(entityList);
+            addEntityHandler.addEntityToList();
             event.consume();
         });
     }
