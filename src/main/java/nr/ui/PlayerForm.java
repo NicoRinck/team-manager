@@ -27,11 +27,10 @@ public class PlayerForm implements Form<PlayerAttributes> {
 
     private boolean active = true;
 
-    private void initDialog() {
+    public PlayerForm() {
         dialog.initStyle(StageStyle.UTILITY);
         dialog.setTitle(getDialogTitle());
-        this.initButtons();
-        setResultConverter();
+        initButtons();
     }
 
     private void initButtons() {
@@ -92,7 +91,7 @@ public class PlayerForm implements Form<PlayerAttributes> {
             vBox.getChildren().add(formComponent.getComponent());
         }
         dialog.getDialogPane().setContent(vBox);
-        this.initDialog();
+        setResultConverter();
     }
 
     private Optional<PlayerAttributes> showForm() {

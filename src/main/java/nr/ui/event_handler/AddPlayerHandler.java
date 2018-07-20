@@ -4,6 +4,7 @@ import nr.Form;
 import nr.data_manager.DataManager;
 import nr.data_model.entities.player.Player;
 import nr.data_model.entities.player.PlayerAttributes;
+import nr.ui.components.EntityList;
 
 import java.util.Optional;
 
@@ -18,9 +19,14 @@ public class AddPlayerHandler implements AddEntityToListHandler<Player> {
     }
 
     @Override
-    public void addEntityToList() {
+    public void addEntityToList(EntityList<Player> entityList) {
         Optional<PlayerAttributes> optional = entityForm.showCreateAttributesForm();
-        System.out.println(optional.isPresent());
-        optional.ifPresent(playerAttributes -> dataManager.saveEntity(new Player(playerAttributes)));
+
+        optional.ifPresent(playerAttributes -> {
+                    Player player = new Player(playerAttributes);
+                    dataManager.saveEntity(player);
+                }
+
+        );
     }
 }

@@ -87,9 +87,9 @@ public class Main extends Application {
         JsonDatabaseStrategy<Player> jsonDatabaseStrategy = new JsonDatabaseStrategy<>(databaseConnection, Player.class);
         DataManager<Player> dataManager = new DataManager<>(jsonDatabaseStrategy);
 
-        EntityList<Player> playerEntityList = new EntityList<>(dataManager.getEntities(),new PlayerListCell(),new OpenDetailsHandler<>(new PlayerDetailView()));
-        EntityListView<Player> entityListView = new EntityListView<>(playerEntityList,new Button("Spieler hinzufügen..."),
-                new AddPlayerHandler(new PlayerForm(),dataManager));
+        EntityList<Player> playerEntityList = new EntityList<>(dataManager.getEntities(), new PlayerListCell(), new OpenDetailsHandler<>(new PlayerDetailView(), dataManager));
+        EntityListView<Player> entityListView = new EntityListView<>(playerEntityList, new Button("Spieler hinzufügen..."),
+                new AddPlayerHandler(new PlayerForm(), dataManager));
 
         Tab tab = new Tab();
         Tab tab2 = new Tab();
