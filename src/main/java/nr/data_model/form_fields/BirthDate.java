@@ -1,6 +1,6 @@
 package nr.data_model.form_fields;
 
-import nr.data_model.validator.BirthDateValidator;
+import nr.data_model.validator.DateValidator;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -10,13 +10,13 @@ public class BirthDate {
     private final LocalDate birthDate;
 
     public BirthDate(LocalDate birthDate) throws IllegalArgumentException {
-        if (BirthDateValidator.isValidBirthDate(birthDate)) {
+        if (DateValidator.isValidBirthDate(birthDate)) {
             this.birthDate = birthDate;
         } else throw new IllegalArgumentException();
     }
 
     public int getAge() {
-        Period period = Period.between(birthDate, BirthDateValidator.getCurrentDate());
+        Period period = Period.between(birthDate, DateValidator.getCurrentDate());
         return period.getYears();
     }
 

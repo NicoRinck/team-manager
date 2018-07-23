@@ -6,7 +6,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import nr.data_model.form_fields.BirthDate;
-import nr.data_model.validator.BirthDateValidator;
+import nr.data_model.validator.DateValidator;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -40,10 +40,10 @@ public class BirthDateComponent extends FormComponent<BirthDate> {
     @Override
     public Optional<BirthDate> getFormComponentValue() {
         LocalDate date = datePicker.getValue();
-        if (BirthDateValidator.isValidBirthDate(date)){
+        if (DateValidator.isValidBirthDate(date)){
             return Optional.of(new BirthDate(date));
         }
-        markInvalidFields(datePicker,errorLabels[0], BirthDateValidator.getErrorMessage(date) );
+        markInvalidFields(datePicker,errorLabels[0], DateValidator.getErrorMessage(date) );
         return Optional.empty();
     }
 

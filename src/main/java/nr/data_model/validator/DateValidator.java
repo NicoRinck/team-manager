@@ -1,8 +1,9 @@
 package nr.data_model.validator;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-public class BirthDateValidator {
+public class DateValidator {
 
     public static String getErrorMessage(LocalDate birthDate) {
         if (isInFuture(birthDate)) {
@@ -21,8 +22,15 @@ public class BirthDateValidator {
         return LocalDate.now();
     }
 
-    public static boolean isInFuture(LocalDate birthDate) {
-        return birthDate.isAfter(getCurrentDate());
+    public static LocalDateTime getLocaleDateTime() {
+        return LocalDateTime.now();
+    }
+
+    public static boolean isInFuture(LocalDate localDate) {
+        return localDate.isAfter(getCurrentDate());
+    }
+    public static boolean isInFuture(LocalDateTime localDateTime) {
+        return localDateTime.isAfter(getLocaleDateTime());
     }
 
     public static boolean isToOld(LocalDate birthDate) {
