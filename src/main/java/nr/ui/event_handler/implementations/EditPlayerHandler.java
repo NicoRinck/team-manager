@@ -1,10 +1,11 @@
-package nr.ui.event_handler.implementation;
+package nr.ui.event_handler.implementations;
 
 import nr.Form;
 import nr.data_manager.DataManager;
 import nr.data_model.entities.player.Player;
 import nr.data_model.entities.player.PlayerAttributes;
 import nr.ui.event_handler.EditEntityHandler;
+import nr.ui.views.EntityDetailView;
 
 public class EditPlayerHandler implements EditEntityHandler<Player> {
 
@@ -17,12 +18,12 @@ public class EditPlayerHandler implements EditEntityHandler<Player> {
     }
 
     @Override
-    public void editEntity(Player player) {
+    public void editEntity(Player player, EntityDetailView<Player> entityDetailView) {
         entityForm.showEditAttributesForm(player.getPlayerAttributes()).ifPresent(playerAttributes -> {
             player.setPlayerAttributes(playerAttributes);
             dataManager.editEntity(player);
-            //TODO: 1.Fehler nicht in DB,  2.Fehler DetailView aktualisieren
-            System.out.println(player);
+            entityDetailView.updateDetailView();
+
         } );
 
     }

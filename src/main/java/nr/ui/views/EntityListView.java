@@ -29,13 +29,14 @@ public class EntityListView<T extends Entity> implements View {
     private void initView() {
         initButton();
 
-        vBox.setPrefWidth(400);
+        vBox.setPrefWidth(450);
+        vBox.setMinHeight(400);
         vBox.setSpacing(10);
         vBox.setAlignment(Pos.TOP_CENTER);
         vBox.getChildren().addAll(addEntityButton, getMainContent(entityList));
     }
 
-    private Node getMainContent(EntityList entityList) {
+    private Node getMainContent(EntityList<T> entityList) {
         if (entityList.getObservableList().size() == 0) {
             Label label = new Label("keine Spieler in der Datenbank!");
             label.setStyle("-fx-font-size: 18");
@@ -67,6 +68,6 @@ public class EntityListView<T extends Entity> implements View {
     }
     private void updateView(EntityList<T> entityList) {
         vBox.getChildren().clear();
-        vBox.getChildren().addAll(addEntityButton, entityList.getComponent());
+        vBox.getChildren().addAll(addEntityButton, getMainContent(entityList));
     }
 }

@@ -24,10 +24,10 @@ import nr.data_model.form_fields.position.Position;
 import nr.ui.PlayerForm;
 import nr.ui.components.EntityList;
 import nr.ui.components.PlayerListCell;
-import nr.ui.event_handler.implementation.AddPlayerHandler;
-import nr.ui.event_handler.implementation.DeleteEntityHandler;
-import nr.ui.event_handler.implementation.EditPlayerHandler;
-import nr.ui.event_handler.implementation.OpenDetailsHandler;
+import nr.ui.event_handler.implementations.AddPlayerHandler;
+import nr.ui.event_handler.implementations.DeleteEntityHandler;
+import nr.ui.event_handler.implementations.EditPlayerHandler;
+import nr.ui.event_handler.implementations.OpenDetailsHandler;
 import nr.ui.views.EntityListView;
 import nr.ui.views.PlayerDetailView;
 
@@ -87,7 +87,7 @@ public class Main extends Application {
         JsonDatabaseStrategy<Player> jsonDatabaseStrategy = new JsonDatabaseStrategy<>(databaseConnection, Player.class);
         DataManager<Player> dataManager = new DataManager<>(jsonDatabaseStrategy);
         EntityList<Player> playerEntityList = new EntityList<>(dataManager.getEntities(), new PlayerListCell(),
-                new OpenDetailsHandler<>(new PlayerDetailView(new EditPlayerHandler(dataManager, new PlayerForm()),new DeleteEntityHandler()), dataManager));
+                new OpenDetailsHandler<>(new PlayerDetailView(new EditPlayerHandler(dataManager, new PlayerForm()),new DeleteEntityHandler<>(dataManager)), dataManager));
 
 
         EntityListView<Player> entityListView = new EntityListView<>(playerEntityList, new Button("Spieler hinzufügen..."),

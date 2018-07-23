@@ -1,4 +1,4 @@
-package nr.ui.event_handler.implementation;
+package nr.ui.event_handler.implementations;
 
 import nr.Form;
 import nr.data_manager.DataManager;

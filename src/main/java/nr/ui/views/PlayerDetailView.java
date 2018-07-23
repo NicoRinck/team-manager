@@ -14,20 +14,21 @@ import javafx.stage.Window;
 import nr.data_model.entities.player.Player;
 import nr.data_model.form_fields.address.Address;
 import nr.ui.event_handler.EditEntityHandler;
-import nr.ui.event_handler.implementation.DeleteEntityHandler;
+import nr.ui.event_handler.implementations.DeleteEntityHandler;
 
 import java.util.ArrayList;
 
 public class PlayerDetailView implements EntityDetailView<Player> {
 
     private final Dialog<Player> dialog = new Dialog<>();
+    private final VBox vBox = new VBox();
     private final GridPane gridPane = new GridPane();
     private final ArrayList<Label> contentLabels = new ArrayList<>();
     private final EditEntityHandler<Player> editPlayerHandler;
-    private final DeleteEntityHandler deleteEntityHandler;
+    private final DeleteEntityHandler<Player> deleteEntityHandler;
     private Player player;
 
-    public PlayerDetailView(EditEntityHandler<Player> editPlayerHandler, DeleteEntityHandler deleteEntityHandler) {
+    public PlayerDetailView(EditEntityHandler<Player> editPlayerHandler, DeleteEntityHandler<Player> deleteEntityHandler) {
         this.editPlayerHandler = editPlayerHandler;
         this.deleteEntityHandler = deleteEntityHandler;
         initView();
@@ -35,15 +36,12 @@ public class PlayerDetailView implements EntityDetailView<Player> {
 
     private void initView() {
         initGrid();
-        VBox vBox = new VBox();
-        initVBox(vBox);
-
+        initVBox();
         HBox buttonBar = new HBox();
         initButtons(buttonBar);
         vBox.getChildren().addAll(buttonBar,gridPane);
         initDialog();
         dialog.getDialogPane().setContent(vBox);
-
     }
 
     private void initDialog() {
@@ -52,10 +50,10 @@ public class PlayerDetailView implements EntityDetailView<Player> {
         window.setOnCloseRequest(event -> window.hide());
     }
 
-    private void initVBox(VBox vBox) {
+    private void initVBox() {
         vBox.setSpacing(20);
-        vBox.setPrefWidth(400);
-        vBox.setPrefHeight(600);
+        vBox.setPrefWidth(375);
+        vBox.setPrefHeight(500);
     }
 
     private void initGrid() {
@@ -75,7 +73,11 @@ public class PlayerDetailView implements EntityDetailView<Player> {
         buttonBar.setSpacing(10);
         Button editButton = new Button("Spieler bearbeiten...");
         Button deleteButton = new Button("Spieler löschen...");
-        editButton.setOnMouseClicked(event -> editPlayerHandler.editEntity(this.player));
+        editButton.setOnMouseClicked(event -> editPlayerHandler.editEntity(this.player, this));
+        deleteButton.setOnMouseClicked(event -> {
+            deleteEntityHandler.deleteEntity(this.player);
+            dialog.getDialogPane().getScene().getWindow().hide();
+        });
         buttonBar.getChildren().addAll(editButton,deleteButton);
     }
 
@@ -122,5 +124,9 @@ public class PlayerDetailView implements EntityDetailView<Player> {
             result += " " + address.getHouseNumber();
         }
         return result;
+    }
+
+    public void updateDetailView() {
+        this.fillGrid(this.player);
     }
 }

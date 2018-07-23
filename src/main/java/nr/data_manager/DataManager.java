@@ -31,6 +31,7 @@ public class DataManager<T extends Entity> {
     }
 
     public void deleteEntity(T entity) {
+        observableList.remove(entity);
         entityDatabaseStrategy.deleteEntity(entity);
     }
 
