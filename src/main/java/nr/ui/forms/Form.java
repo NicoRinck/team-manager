@@ -1,4 +1,4 @@
-package nr;
+package nr.ui.forms;
 
 import nr.data_model.entities.EntityAttributes;
 

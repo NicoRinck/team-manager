@@ -1,11 +1,11 @@
 package nr.ui.event_handler.implementations;
 
-import nr.Form;
 import nr.data_manager.DataManager;
 import nr.data_model.entities.player.Player;
 import nr.data_model.entities.player.PlayerAttributes;
 import nr.ui.components.EntityList;
 import nr.ui.event_handler.AddEntityToListHandler;
+import nr.ui.forms.Form;
 
 import java.util.Optional;
 

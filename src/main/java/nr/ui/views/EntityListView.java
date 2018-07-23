@@ -8,10 +8,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import nr.data_model.entities.Entity;
+import nr.ui.components.Component;
 import nr.ui.components.EntityList;
 import nr.ui.event_handler.AddEntityToListHandler;
 
-public class EntityListView<T extends Entity> implements View {
+public class EntityListView<T extends Entity> implements Component {
 
     private VBox vBox = new VBox();
     private final EntityList<T> entityList;
@@ -56,7 +57,7 @@ public class EntityListView<T extends Entity> implements View {
     }
 
     @Override
-    public Node getView() {
+    public Node getComponent() {
         return vBox;
     }
 

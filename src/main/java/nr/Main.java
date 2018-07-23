@@ -21,13 +21,13 @@ import nr.data_model.form_fields.PlayerName;
 import nr.data_model.form_fields.address.AddressBuilder;
 import nr.data_model.form_fields.position.PlayerPositions;
 import nr.data_model.form_fields.position.Position;
-import nr.ui.PlayerForm;
 import nr.ui.components.EntityList;
 import nr.ui.components.PlayerListCell;
 import nr.ui.event_handler.implementations.AddPlayerHandler;
 import nr.ui.event_handler.implementations.DeleteEntityHandler;
 import nr.ui.event_handler.implementations.EditPlayerHandler;
 import nr.ui.event_handler.implementations.OpenDetailsHandler;
+import nr.ui.forms.PlayerForm;
 import nr.ui.views.EntityListView;
 import nr.ui.views.PlayerDetailView;
 
@@ -97,7 +97,7 @@ public class Main extends Application {
         Tab tab2 = new Tab();
 
         tab.setText("new tab");
-        tab.setContent(entityListView.getView());
+        tab.setContent(entityListView.getComponent());
 
         tab2.setText("new tab");
         tab2.setContent(new Rectangle(200, 200, Color.ROSYBROWN));
