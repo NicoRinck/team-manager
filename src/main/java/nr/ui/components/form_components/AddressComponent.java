@@ -13,10 +13,10 @@ import java.util.Optional;
 
 public class AddressComponent extends GridFormComponent<Address> {
 
-    private final TextField residenceField = new TextField();
-    private final TextField postCodeField = new TextField();
-    private final TextField streetField = new TextField();
-    private final TextField houseNumberField = new TextField();
+    private final TextField residenceField = new TextField("");
+    private final TextField postCodeField = new TextField("");
+    private final TextField streetField = new TextField("");
+    private final TextField houseNumberField = new TextField("");
 
     public AddressComponent() {
         super(4);
@@ -31,11 +31,18 @@ public class AddressComponent extends GridFormComponent<Address> {
 
     private void fillTextFields(Address address) {
         if (address != null) {
-            residenceField.setText(address.getResidence());
-            postCodeField.setText(address.getPostCode());
-            streetField.setText(address.getStreet());
+            residenceField.setText(getSafeString(address.getResidence()));
+            postCodeField.setText(getSafeString(address.getPostCode()));
+            streetField.setText(getSafeString(address.getStreet()));
             houseNumberField.setText(Integer.toString(address.getHouseNumber()));
         }
+    }
+
+    private String getSafeString(String s) {
+        if (s == null) {
+            return "";
+        }
+        return s;
     }
 
     private void init() {
@@ -74,6 +81,7 @@ public class AddressComponent extends GridFormComponent<Address> {
     @Override
     public Optional<Address> getFormComponentValue() {
         String residence = residenceField.getText().trim();
+        System.out.println(postCodeField.getText());
         String postCode = postCodeField.getText().trim();
         String street = streetField.getText().trim();
         String houseNumber = houseNumberField.getText().trim();

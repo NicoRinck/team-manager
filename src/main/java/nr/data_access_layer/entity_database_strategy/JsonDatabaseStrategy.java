@@ -50,7 +50,7 @@ public class JsonDatabaseStrategy<T extends Entity> implements EntityDatabaseStr
             entityHashMap.put(currentIndex, entity);
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                        "insert into " + tableName + " values (?,?)");
+                        "insert into " + tableName + " values (?,?);");
                 preparedStatement.setInt(1, currentIndex);
                 preparedStatement.setString(2, json);
                 preparedStatement.execute();
@@ -87,7 +87,7 @@ public class JsonDatabaseStrategy<T extends Entity> implements EntityDatabaseStr
         Connection connection = databaseConnection.getConnectionToDB();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "DELETE from " + tableName + " WHERE id = ?"
+                    "DELETE from " + tableName + " WHERE id = ?;"
             );
             preparedStatement.setInt(1, id);
             preparedStatement.execute();
@@ -140,10 +140,11 @@ public class JsonDatabaseStrategy<T extends Entity> implements EntityDatabaseStr
         Connection connection = databaseConnection.getConnectionToDB();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "UPDATE " + tableName + " SET json = ? WHERE id = ?"
+                    "UPDATE " + tableName + " SET json = ? WHERE id = ?;"
             );
             preparedStatement.setString(1,newValue);
             preparedStatement.setInt(2,id);
+            preparedStatement.execute();
 
         } catch (SQLException e) {
             e.printStackTrace();

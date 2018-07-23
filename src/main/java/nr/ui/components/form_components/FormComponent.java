@@ -27,17 +27,6 @@ public abstract class FormComponent<T> implements Component {
         }
     }
 
-    /*protected void installEventHandler(Control... controls) {
-        for (final Control control: controls) {
-            control.setOnMouseClicked(e -> {
-                control.setStyle("-fx-border-color: red");
-            });
-            control.setOnMouseExited(e -> {
-                control.setStyle("-fx-border-color: gray");
-            });
-        }
-    }*/
-
     static void markInvalidFields(Control field, Label errorLabel, String errorMessage) {
         field.setStyle("-fx-border-color: red");
         if (!errorMessage.equals("")) {

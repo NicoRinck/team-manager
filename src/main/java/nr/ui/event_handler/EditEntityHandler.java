@@ -1,4 +1,8 @@
 package nr.ui.event_handler;
 
-public class EditEntityHandler {
+import nr.data_model.entities.Entity;
+
+public interface EditEntityHandler<T extends Entity> {
+
+    void editEntity(T entity);
 }

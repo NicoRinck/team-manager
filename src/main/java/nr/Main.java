@@ -1,8 +1,6 @@
 package nr;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -26,8 +24,10 @@ import nr.data_model.form_fields.position.Position;
 import nr.ui.PlayerForm;
 import nr.ui.components.EntityList;
 import nr.ui.components.PlayerListCell;
-import nr.ui.event_handler.AddPlayerHandler;
-import nr.ui.event_handler.OpenDetailsHandler;
+import nr.ui.event_handler.implementation.AddPlayerHandler;
+import nr.ui.event_handler.implementation.DeleteEntityHandler;
+import nr.ui.event_handler.implementation.EditPlayerHandler;
+import nr.ui.event_handler.implementation.OpenDetailsHandler;
 import nr.ui.views.EntityListView;
 import nr.ui.views.PlayerDetailView;
 
@@ -86,8 +86,10 @@ public class Main extends Application {
         DatabaseConnection databaseConnection = new H2DatabaseConnection();
         JsonDatabaseStrategy<Player> jsonDatabaseStrategy = new JsonDatabaseStrategy<>(databaseConnection, Player.class);
         DataManager<Player> dataManager = new DataManager<>(jsonDatabaseStrategy);
+        EntityList<Player> playerEntityList = new EntityList<>(dataManager.getEntities(), new PlayerListCell(),
+                new OpenDetailsHandler<>(new PlayerDetailView(new EditPlayerHandler(dataManager, new PlayerForm()),new DeleteEntityHandler()), dataManager));
 
-        EntityList<Player> playerEntityList = new EntityList<>(dataManager.getEntities(), new PlayerListCell(), new OpenDetailsHandler<>(new PlayerDetailView(), dataManager));
+
         EntityListView<Player> entityListView = new EntityListView<>(playerEntityList, new Button("Spieler hinzufügen..."),
                 new AddPlayerHandler(new PlayerForm(), dataManager));
 
@@ -105,7 +107,7 @@ public class Main extends Application {
         Button button = new Button("Click");
         DatePicker datePicker = new DatePicker();
         datePicker.setValue(LocalDate.now());
-        PlayerAttributes playerAttributes = new PlayerAttributes(new PlayerName("Herbert", "Harry"),
+        /*PlayerAttributes playerAttributes = new PlayerAttributes(new PlayerName("Herbert", "Harry"),
                 new BirthDate(LocalDate.of(1993, 3, 18)),
                 positions1);
         button.setOnAction(new EventHandler<ActionEvent>() {
@@ -114,7 +116,7 @@ public class Main extends Application {
                 PlayerForm playerForm = new PlayerForm();
                 playerForm.showCreateAttributesForm();
             }
-        });
+        });*/
         hBox.getChildren().addAll(button, datePicker);
         tab2.setContent(hBox);
 

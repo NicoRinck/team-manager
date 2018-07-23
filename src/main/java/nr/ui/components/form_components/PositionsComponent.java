@@ -114,7 +114,7 @@ public class PositionsComponent extends FormComponent {
             }
             return Optional.of(playerPositions);
         }
-        markInvalidFields(primaryPositionField, errorLabels[0], "mindestens eine Position\nmuss gesetzt sein!");
+        markInvalidFields(primaryPositionField, errorLabels[0], "min. eine Position\nmuss gesetzt sein!");
         return Optional.empty();
     }
 

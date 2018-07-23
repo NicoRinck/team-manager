@@ -1,6 +1,6 @@
 #gridPane {
     -fx-background-radius: 5;
-    -fx-background-color: #777777;
+    -fx-background-color: #979797;
 }
 
 #gridPane:selected {

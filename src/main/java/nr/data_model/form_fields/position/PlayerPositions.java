@@ -46,4 +46,15 @@ public class PlayerPositions {
         return tertiaryPosition;
     }
 
+    @Override
+    public String toString() {
+        return primaryPosition.toString() + appendPositionString(secondaryPosition) + appendPositionString(tertiaryPosition);
+    }
+
+    private String appendPositionString(Position position) {
+        if (position != Position.NO_POSITION) {
+            return ", " + position.toString();
+        }
+        return "";
+    }
 }

@@ -1,8 +1,11 @@
 package nr.ui.views;
 
 import javafx.collections.ListChangeListener;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import nr.data_model.entities.Entity;
 import nr.ui.components.EntityList;
@@ -23,24 +26,28 @@ public class EntityListView<T extends Entity> implements View {
         initChangeListener();
     }
 
-    private void initChangeListener() {
-        entityList.getObservableList().addListener((ListChangeListener.Change<? extends T> c) -> {
-            EntityList<T> newEntityList = EntityList.createNewEntityList(entityList);
-            updateView(newEntityList);
-        });
-    }
-    private void updateView(EntityList<T> entityList) {
-        vBox.getChildren().clear();
-        vBox.getChildren().addAll(addEntityButton, entityList.getComponent());
-    }
-
     private void initView() {
         initButton();
+
         vBox.setPrefWidth(400);
-        vBox.getChildren().addAll(addEntityButton, entityList.getComponent());
+        vBox.setSpacing(10);
+        vBox.setAlignment(Pos.TOP_CENTER);
+        vBox.getChildren().addAll(addEntityButton, getMainContent(entityList));
+    }
+
+    private Node getMainContent(EntityList entityList) {
+        if (entityList.getObservableList().size() == 0) {
+            Label label = new Label("keine Spieler in der Datenbank!");
+            label.setStyle("-fx-font-size: 18");
+            label.setAlignment(Pos.CENTER);
+            return label;
+        }
+        return entityList.getComponent();
     }
 
     private void initButton() {
+        addEntityButton.setPadding(new Insets( 5));
+        addEntityButton.setStyle("-fx-start-margin: 10px");
         addEntityButton.setOnMouseClicked(event -> {
             addEntityHandler.addEntityToList(entityList);
             event.consume();
@@ -50,5 +57,16 @@ public class EntityListView<T extends Entity> implements View {
     @Override
     public Node getView() {
         return vBox;
+    }
+
+    private void initChangeListener() {
+        entityList.getObservableList().addListener((ListChangeListener.Change<? extends T> c) -> {
+            EntityList<T> newEntityList = EntityList.createNewEntityList(entityList);
+            updateView(newEntityList);
+        });
+    }
+    private void updateView(EntityList<T> entityList) {
+        vBox.getChildren().clear();
+        vBox.getChildren().addAll(addEntityButton, entityList.getComponent());
     }
 }

@@ -13,4 +13,8 @@ public class Player implements Entity {
     public PlayerAttributes getPlayerAttributes() {
         return playerAttributes;
     }
+
+    public void setPlayerAttributes(PlayerAttributes playerAttributes) {
+        this.playerAttributes = playerAttributes;
+    }
 }
