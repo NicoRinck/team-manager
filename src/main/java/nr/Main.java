@@ -1,6 +1,8 @@
 package nr;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -14,6 +16,7 @@ import nr.data_access_layer.DatabaseConnection;
 import nr.data_access_layer.H2DatabaseConnection;
 import nr.data_access_layer.entity_database_strategy.JsonDatabaseStrategy;
 import nr.data_manager.DataManager;
+import nr.data_model.entities.appointment.TrainingAttributes;
 import nr.data_model.entities.player.Player;
 import nr.data_model.entities.player.PlayerAttributes;
 import nr.data_model.form_fields.BirthDate;
@@ -28,11 +31,13 @@ import nr.ui.event_handler.implementations.DeleteEntityHandler;
 import nr.ui.event_handler.implementations.EditPlayerHandler;
 import nr.ui.event_handler.implementations.OpenDetailsHandler;
 import nr.ui.forms.PlayerForm;
+import nr.ui.forms.TrainingForm;
 import nr.ui.views.EntityListView;
 import nr.ui.views.PlayerDetailView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Optional;
 
 
 public class Main extends Application {
@@ -107,16 +112,14 @@ public class Main extends Application {
         Button button = new Button("Click");
         DatePicker datePicker = new DatePicker();
         datePicker.setValue(LocalDate.now());
-        /*PlayerAttributes playerAttributes = new PlayerAttributes(new PlayerName("Herbert", "Harry"),
-                new BirthDate(LocalDate.of(1993, 3, 18)),
-                positions1);
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                PlayerForm playerForm = new PlayerForm();
-                playerForm.showCreateAttributesForm();
+                TrainingForm trainingForm = new TrainingForm();
+                Optional<TrainingAttributes> optional = trainingForm.showCreateAttributesForm();
+                System.out.println(optional);
             }
-        });*/
+        });
         hBox.getChildren().addAll(button, datePicker);
         tab2.setContent(hBox);
 

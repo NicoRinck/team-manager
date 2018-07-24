@@ -58,7 +58,7 @@ public class AddressComponent extends GridFormComponent<Address> {
     }
 
     private void fillGrid() {
-        this.gridPane.add(new Label("Wohnort: "), 0, 0);
+        this.gridPane.add(new Label("Ort: "), 0, 0);
         this.gridPane.add(residenceField, 1, 0);
         this.gridPane.add(new Label("Postleitzahl: "), 0, 1);
         this.gridPane.add(postCodeField, 1, 1);

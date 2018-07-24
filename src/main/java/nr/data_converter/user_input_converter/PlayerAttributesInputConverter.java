@@ -29,7 +29,6 @@ public class PlayerAttributesInputConverter implements UserInputConverter<Player
 
     public void setPlayerName(PlayerName playerName) {
         this.playerName = playerName;
-        System.out.println(playerName.getNameString());
     }
 
     public void setBirthDate(BirthDate birthDate) {

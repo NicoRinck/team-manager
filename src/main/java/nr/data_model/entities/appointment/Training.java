@@ -7,4 +7,8 @@ public class Training extends Appointment {
     public Training(TrainingAttributes trainingAttributes) {
         this.trainingAttributes = trainingAttributes;
     }
+
+    public TrainingAttributes getTrainingAttributes() {
+        return trainingAttributes;
+    }
 }

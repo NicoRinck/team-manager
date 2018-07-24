@@ -1,62 +1,30 @@
 package nr.ui.forms;
 
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
-import javafx.scene.layout.VBox;
-import javafx.stage.StageStyle;
 import nr.data_converter.user_input_converter.PlayerAttributesInputConverter;
 import nr.data_model.entities.player.PlayerAttributes;
 import nr.ui.components.form_components.*;
 
 import java.util.Optional;
 
-public class PlayerForm implements Form<PlayerAttributes> {
+public class PlayerForm extends DialogForm<PlayerAttributes> {
 
-
-    private final Dialog<PlayerAttributes> dialog = new Dialog<>();
-    int countButtonCalls = 0;
     private PlayerNameComponent playerNameGrid;
     private BirthDateComponent birthDateComponent;
     private PositionsComponent positionsComponent;
     private AddressComponent addressComponent;
 
-    private final ButtonType okButton = new ButtonType("Speichern", ButtonBar.ButtonData.APPLY);
-    private final ButtonType exitButton = new ButtonType("Abbrechen", ButtonBar.ButtonData.CANCEL_CLOSE);
     private PlayerAttributes playerAttributes;
 
-    private boolean active = true;
+    public PlayerForm() {}
 
-    public PlayerForm() {
-        dialog.initStyle(StageStyle.UTILITY);
-        initButtons();
-    }
-
-    private void initButtons() {
-        dialog.getDialogPane().getButtonTypes().add(exitButton);
-        dialog.getDialogPane().getButtonTypes().add(okButton);
-        this.setResultConverter();
-    }
-
-    private void setResultConverter() {
-        dialog.setResultConverter((ButtonType) -> {
-           countButtonCalls++;
-            if (ButtonType == okButton) {
-                PlayerAttributesInputConverter inputConverter = new PlayerAttributesInputConverter();
-                playerNameGrid.getFormComponentValue().ifPresent(inputConverter::setPlayerName);
-                birthDateComponent.getFormComponentValue().ifPresent(inputConverter::setBirthDate);
-                positionsComponent.getFormComponentValue().ifPresent(inputConverter::setPlayerPositions);
-                addressComponent.getFormComponentValue().ifPresent(inputConverter::setAddress);
-                if (inputConverter.convertInputToEntity().isPresent()) {
-                    return inputConverter.convertInputToEntity().get();
-                }
-            } else {
-                if (countButtonCalls % 2 != 0) {
-                    this.active = false;
-                }
-            }
-            return null;
-        });
+    @Override
+    Optional<PlayerAttributes> getConvertedInput() {
+        final PlayerAttributesInputConverter inputConverter = new PlayerAttributesInputConverter();
+        playerNameGrid.getFormComponentValue().ifPresent(inputConverter::setPlayerName);
+        birthDateComponent.getFormComponentValue().ifPresent(inputConverter::setBirthDate);
+        positionsComponent.getFormComponentValue().ifPresent(inputConverter::setPlayerPositions);
+        addressComponent.getFormComponentValue().ifPresent(inputConverter::setAddress);
+        return inputConverter.convertInputToEntity();
     }
 
     private String getDialogTitle() {
@@ -88,24 +56,11 @@ public class PlayerForm implements Form<PlayerAttributes> {
     }
 
     private void initForm(FormComponent... formComponents) {
+        initDialog();
         dialog.setTitle(getDialogTitle());
-        VBox vBox = new VBox();
-        vBox.setPrefWidth(510);
-        vBox.setSpacing(20);
-
+        vBox.getChildren().clear();
         for (FormComponent formComponent : formComponents) {
             vBox.getChildren().add(formComponent.getComponent());
         }
-        dialog.getDialogPane().setContent(vBox);
     }
-
-    private Optional<PlayerAttributes> showForm() {
-        this.active = true;
-        Optional<PlayerAttributes> optional = Optional.empty();
-        while (!optional.isPresent() && active) {
-            optional = dialog.showAndWait();
-        }
-        return optional;
-    }
-
 }

@@ -19,4 +19,8 @@ public class TrainingAttributes implements EntityAttributes<Training> {
     public void setAddress(Address address) {
         this.address = address;
     }
+
+    public Address getAddress() {
+        return address;
+    }
 }

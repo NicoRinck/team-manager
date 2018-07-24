@@ -27,14 +27,14 @@ public abstract class FormComponent<T> implements Component {
         }
     }
 
-    static void markInvalidFields(Control field, Label errorLabel, String errorMessage) {
+    public static void markInvalidFields(Control field, Label errorLabel, String errorMessage) {
         field.setStyle("-fx-border-color: red");
-        if (!errorMessage.equals("")) {
+        if (!errorMessage.equals("") && errorLabel != null) {
             errorLabel.setText(errorMessage);
         }
     }
 
-    static void forceNumericInput(TextField textField) {
+    public static void forceNumericInput(TextField textField) {
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
                 textField.setText(newValue.replaceAll("[^\\d]", ""));
