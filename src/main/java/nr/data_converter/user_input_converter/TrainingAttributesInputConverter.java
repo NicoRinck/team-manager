@@ -42,20 +42,8 @@ public class TrainingAttributesInputConverter implements UserInputConverter<Trai
         return false;
     }
 
-    public boolean setDuration(String minimalTimeString, String maximalTimeString) {
-        if (!maximalTimeString.equals("") && !minimalTimeString.equals("")) {
-            int minimalTime = Integer.valueOf(minimalTimeString);
-            int maximalTime = Integer.valueOf(maximalTimeString);
-            if (minimalTime == maximalTime) {
-                duration = new AppointmentDuration(minimalTime);
-                return true;
-            }
-            if (minimalTime < maximalTime) {
-                duration = new AppointmentDuration(minimalTime, maximalTime);
-                return true;
-            }
-        }
-        return false;
+    public void setDuration(AppointmentDuration duration) {
+        this.duration = duration;
     }
 
     public void setAddress(Address address) {

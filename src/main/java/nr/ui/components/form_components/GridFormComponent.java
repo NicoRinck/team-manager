@@ -4,7 +4,6 @@ import javafx.scene.Node;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-import nr.ui.components.form_components.FormComponent;
 
 import java.util.Optional;
 
@@ -43,6 +42,8 @@ public abstract class GridFormComponent<T> extends FormComponent<T> {
         column3.setHgrow(Priority.SOMETIMES);
         this.gridPane.getColumnConstraints().addAll(column1,column2,column3);
     }
+
+
 
     @Override
     public Node getComponent() {

@@ -1,0 +1,13 @@
+.label {
+    -fx-font-size: 17;
+}
+
+#h-box {
+    -fx-background-color: #7ca8ff;
+    -fx-background-radius: 5;
+    -fx-padding: 3;
+}
+
+#info-label {
+    -fx-font-weight: bold;
+}

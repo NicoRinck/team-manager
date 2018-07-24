@@ -9,9 +9,11 @@ import javafx.scene.layout.HBox;
 import nr.data_converter.user_input_converter.TrainingAttributesInputConverter;
 import nr.data_model.entities.appointment.TrainingAttributes;
 import nr.ui.components.form_components.AddressComponent;
+import nr.ui.components.form_components.DurationComponent;
 import nr.ui.components.form_components.FormComponent;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Optional;
 
 public class TrainingForm extends DialogForm<TrainingAttributes> {
@@ -20,21 +22,18 @@ public class TrainingForm extends DialogForm<TrainingAttributes> {
     private final DatePicker datePicker = new DatePicker();
     private final TextField hours = new TextField();
     private final TextField minutes = new TextField();
-    private final TextField minimalDuration = new TextField();
-    private final TextField maximalDuration = new TextField();
+    private DurationComponent durationComponent;
     private AddressComponent addressComponent;
     private final Label dateTimeError = new Label();
-    private final Label durationError= new Label();
 
     public TrainingForm() {
         initGrid();
         dateTimeError.setStyle("-fx-text-fill: red");
-        durationError.setStyle("-fx-text-fill: red");
     }
 
     private void setVBoxContent() {
         vBox.getChildren().clear();
-        vBox.getChildren().addAll(gridPane, addressComponent.getComponent());
+        vBox.getChildren().addAll(gridPane, durationComponent.getComponent(), addressComponent.getComponent());
     }
 
     private void initGrid() {
@@ -46,25 +45,16 @@ public class TrainingForm extends DialogForm<TrainingAttributes> {
         gridPane.add(datePicker, 1, 0);
         gridPane.add(new Label("Uhrzeit: "), 0, 1);
         gridPane.add(getTimeComponent(), 1, 1);
-        gridPane.add(new Label("minimale Dauer: "), 0, 2);
-        gridPane.add(minimalDuration, 1, 2);
-        gridPane.add(new Label("maximale Dauer: "), 0, 3);
-        gridPane.add(maximalDuration, 1, 3);
-        gridPane.add(durationError,1,4);
     }
 
     private HBox getTimeComponent() {
         HBox hBox = new HBox();
         hBox.setSpacing(5);
         hBox.setAlignment(Pos.CENTER_LEFT);
+        hours.setText(Integer.toString(LocalTime.now().getHour()));
+        minutes.setText(Integer.toString(LocalTime.now().getMinute()));
         hBox.getChildren().addAll(hours, new Label(":"), minutes, dateTimeError);
         return hBox;
-    }
-
-    private void initTimeFieldValidation(TextField textField, int maxCharacters, int upperBound) {
-        FormComponent.forceNumericInput(textField);
-        limitTextfieldCharacter(textField, maxCharacters);
-        limitTextfieldToUpperBound(textField, upperBound);
     }
 
     private void initTimeFields() {
@@ -72,10 +62,6 @@ public class TrainingForm extends DialogForm<TrainingAttributes> {
         minutes.setPrefColumnCount(2);
         initTimeFieldValidation(hours, 2,24);
         initTimeFieldValidation(minutes,2,60);
-        minimalDuration.setMaxWidth(65);
-        maximalDuration.setMaxWidth(65);
-        initTimeFieldValidation(minimalDuration, 4,1001);
-        initTimeFieldValidation(maximalDuration,4,1001);
     }
 
     private void initForm() {
@@ -91,10 +77,7 @@ public class TrainingForm extends DialogForm<TrainingAttributes> {
             FormComponent.markInvalidFields(minutes,null,"");
             FormComponent.markInvalidFields(datePicker,dateTimeError,"Datum liegt in der Vergangenheit!");
         }
-        if (!inputConverter.setDuration(minimalDuration.getText(), maximalDuration.getText())) {
-            FormComponent.markInvalidFields(minimalDuration,null,"");
-            FormComponent.markInvalidFields(maximalDuration,durationError,"angegebener Zeitraum ist ungültig!");
-        }
+        durationComponent.getFormComponentValue().ifPresent(inputConverter::setDuration);
         addressComponent.getFormComponentValue().ifPresent(inputConverter::setAddress);
         return inputConverter.convertInputToEntity();
     }
@@ -102,30 +85,18 @@ public class TrainingForm extends DialogForm<TrainingAttributes> {
     @Override
     public Optional<TrainingAttributes> showCreateAttributesForm() {
         this.addressComponent = new AddressComponent();
+        this.durationComponent = new DurationComponent();
         initForm();
+        this.dialog.setTitle("Trainingseinheit erstellen");
         return showForm();
     }
 
     @Override
     public Optional<TrainingAttributes> showEditAttributesForm(TrainingAttributes entityAttributes) {
         this.addressComponent = new AddressComponent(entityAttributes.getAddress());
+        this.durationComponent = new DurationComponent(entityAttributes.getDuration());
         initForm();
+        dialog.setTitle("Trainingseinheit bearbeiten");
         return showForm();
-    }
-
-    private static void limitTextfieldCharacter(final TextField textField, final int maxCharacters) {
-        textField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.length() > maxCharacters) {
-                textField.deleteNextChar();
-            }
-        });
-    }
-
-    private static void limitTextfieldToUpperBound(final TextField textField, final int upperBound) {
-        textField.textProperty().addListener(((observable, oldValue, newValue) -> {
-            if (!newValue.equals("") && Integer.valueOf(newValue) >= upperBound) {
-                textField.setText(upperBound-1 +"");
-            }
-        }));
     }
 }

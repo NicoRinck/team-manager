@@ -39,7 +39,7 @@ public class EntityListView<T extends Entity> implements Component {
 
     private Node getMainContent(EntityList<T> entityList) {
         if (entityList.getObservableList().size() == 0) {
-            Label label = new Label("keine Spieler in der Datenbank!");
+            Label label = new Label("keine Einträge in der Datenbank!");
             label.setStyle("-fx-font-size: 18");
             label.setAlignment(Pos.CENTER);
             return label;

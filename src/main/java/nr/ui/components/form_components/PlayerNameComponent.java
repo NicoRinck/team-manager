@@ -16,21 +16,17 @@ public class PlayerNameComponent extends GridFormComponent<PlayerName> {
     public PlayerNameComponent(PlayerName playerName) {
         super(2);
         this.fillTextFields(playerName);
-        this.init();
+        fillGrid();
     }
 
     public PlayerNameComponent() {
         super(2);
-        this.init();
+        fillGrid();
     }
 
     private void fillTextFields(PlayerName playerName) {
         this.forenameField.setText(playerName.getForename());
         this.surnameField.setText(playerName.getSurname());
-    }
-
-    private void init() {
-        this.fillGrid();
     }
 
     private void fillGrid(){

@@ -3,9 +3,11 @@ package nr.ui.forms;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.StageStyle;
 import nr.data_model.entities.EntityAttributes;
+import nr.ui.components.form_components.FormComponent;
 
 import java.util.Optional;
 
@@ -19,7 +21,8 @@ public abstract class DialogForm<T extends EntityAttributes> implements Form<T> 
     boolean active = true;
     final VBox vBox = new VBox();
 
-    public DialogForm() {}
+    public DialogForm() {
+    }
 
     private void initVBox() {
         vBox.setPrefWidth(510);
@@ -67,6 +70,29 @@ public abstract class DialogForm<T extends EntityAttributes> implements Form<T> 
             return null;
         });
     }
+
+    public static void initTimeFieldValidation(TextField textField, int maxCharacters, int upperBound) {
+        FormComponent.forceNumericInput(textField);
+        limitTextfieldCharacter(textField, maxCharacters);
+        limitTextfieldToUpperBound(textField, upperBound);
+    }
+
+    private static void limitTextfieldCharacter(final TextField textField, final int maxCharacters) {
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > maxCharacters) {
+                textField.deleteNextChar();
+            }
+        });
+    }
+
+    private static void limitTextfieldToUpperBound(final TextField textField, final int upperBound) {
+        textField.textProperty().addListener(((observable, oldValue, newValue) -> {
+            if (!newValue.equals("") && Integer.valueOf(newValue) >= upperBound) {
+                textField.setText(upperBound - 1 + "");
+            }
+        }));
+    }
+
 
     Optional<T> showForm() {
         this.active = true;

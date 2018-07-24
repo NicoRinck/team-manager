@@ -23,4 +23,12 @@ public class TrainingAttributes implements EntityAttributes<Training> {
     public Address getAddress() {
         return address;
     }
+
+    public AppointmentDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public AppointmentDuration getDuration() {
+        return duration;
+    }
 }

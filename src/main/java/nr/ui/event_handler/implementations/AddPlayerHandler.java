@@ -21,7 +21,7 @@ public class AddPlayerHandler implements AddEntityToListHandler<Player> {
 
     @Override
     public void addEntityToList(EntityList<Player> entityList) {
-        Optional<PlayerAttributes> optional = entityForm.showCreateAttributesForm();
+        final Optional<PlayerAttributes> optional = entityForm.showCreateAttributesForm();
 
         optional.ifPresent(playerAttributes -> {
                     Player player = new Player(playerAttributes);

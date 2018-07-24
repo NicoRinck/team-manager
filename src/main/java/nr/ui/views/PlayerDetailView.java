@@ -1,7 +1,6 @@
 package nr.ui.views;
 
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
@@ -12,7 +11,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import nr.data_model.entities.player.Player;
-import nr.data_model.form_fields.address.Address;
 import nr.ui.event_handler.EditEntityHandler;
 import nr.ui.event_handler.implementations.DeleteEntityHandler;
 
@@ -92,7 +90,7 @@ public class PlayerDetailView implements EntityDetailView<Player> {
     }
 
     @Override
-    public void showDetailView(Player player, Node parentNode) {
+    public void showDetailView(Player player) {
         fillGrid(player);
         dialog.show();
     }
@@ -103,27 +101,7 @@ public class PlayerDetailView implements EntityDetailView<Player> {
         contentLabels.get(1).setText(player.getPlayerAttributes().getPlayerName().getSurname());
         contentLabels.get(2).setText(player.getPlayerAttributes().getBirthDate().getBirthDate().toString());
         contentLabels.get(3).setText(player.getPlayerAttributes().getPlayerPositions().toString());
-        contentLabels.get(4).setText(getAddressString(player.getPlayerAttributes().getAddress()));
-    }
-
-    private String getAddressString(Address address) {
-        if (address == null) {
-            return "-";
-        }
-        String result = "";
-        if (address.getPostCode() != null) {
-            result = address.getPostCode();
-        }
-        if (address.getResidence() != null && !address.getResidence().equals("")) {
-            result += " " + address.getResidence();
-        }
-        if (address.getStreet() != null && !address.getStreet().equals("")) {
-            result += ", " + address.getStreet();
-        }
-        if (address.getHouseNumber() > 0) {
-            result += " " + address.getHouseNumber();
-        }
-        return result;
+        contentLabels.get(4).setText(EntityDetailView.getAddressString(player.getPlayerAttributes().getAddress()));
     }
 
     public void updateDetailView() {

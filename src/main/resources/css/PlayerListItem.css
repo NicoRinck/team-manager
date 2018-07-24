@@ -1,11 +1,11 @@
 #gridPane {
     -fx-background-radius: 5;
+    -fx-padding: 2;
     -fx-background-color: #979797;
 }
 
 #gridPane:selected {
     -fx-background-color: green;
-
 }
 
 .label {

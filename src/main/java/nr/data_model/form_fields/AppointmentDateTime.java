@@ -3,6 +3,8 @@ package nr.data_model.form_fields;
 import nr.data_model.validator.DateValidator;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class AppointmentDateTime {
 
@@ -16,5 +18,10 @@ public class AppointmentDateTime {
 
     public LocalDateTime getLocalDateTime() {
         return localDateTime;
+    }
+
+    public String getDateTimeString() {
+        DateTimeFormatter dateTimeFormatter= DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM,FormatStyle.SHORT);
+        return localDateTime.format(dateTimeFormatter);
     }
 }
