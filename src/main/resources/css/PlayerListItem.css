@@ -1,14 +1,16 @@
 #gridPane {
-    -fx-background-color: gray;
     -fx-background-radius: 5;
+    -fx-padding: 2;
+    -fx-background-color: #979797;
 }
 
-#gridPane:focused {
+#gridPane:selected {
     -fx-background-color: green;
 }
 
 .label {
-    -fx-padding: 0 0 0 6;
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
 }
 
 .label-last {

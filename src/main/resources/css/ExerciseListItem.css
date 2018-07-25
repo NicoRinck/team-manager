@@ -1,0 +1,17 @@
+#h-box {
+    -fx-background-color: #e2e25c;
+    -fx-background-radius: 5;
+    -fx-padding: 2;
+}
+
+#name-label {
+    -fx-font-weight: bold;
+    -fx-border-width: 0 0 0 2;
+    -fx-border-color: #65652b;
+
+}
+
+.label {
+    -fx-padding: 0 10 0 10;
+    -fx-font-size: 17;
+}
