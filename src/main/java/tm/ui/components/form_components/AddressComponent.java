@@ -81,7 +81,6 @@ public class AddressComponent extends GridFormComponent<Address> {
     @Override
     public Optional<Address> getFormComponentValue() {
         String residence = residenceField.getText().trim();
-        System.out.println(postCodeField.getText());
         String postCode = postCodeField.getText().trim();
         String street = streetField.getText().trim();
         String houseNumber = houseNumberField.getText().trim();

@@ -36,6 +36,13 @@ public class AppointmentDuration {
         return exactTime;
     }
 
+    public Integer getMaximalOrExactTime() {
+        if (exactTime == -1) {
+            return maximalTime;
+        }
+        return exactTime;
+    }
+
     public String getDurationString() {
         if (exactTime != -1) {
             return exactTime + "min";

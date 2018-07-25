@@ -20,35 +20,35 @@ public class NameStringValidatorTest {
 
     @Test
     public void consistOfValidCharacter_invalidCharacterName() {
-        boolean result = NameStringValidator.isValidNameString(INVALID_CHARACTER_NAME);
+        boolean result = NameStringValidator.consistOfValidCharacter(INVALID_CHARACTER_NAME);
         assertFalse(result);
     }
     @Test
     public void consistOfValidCharacter_validName() {
-        boolean result = NameStringValidator.isValidNameString(VALID_NAME);
+        boolean result = NameStringValidator.consistOfValidCharacter(VALID_NAME);
         assertTrue(result);
     }
 
     @Test
     public void startsWithUppercase_lowerCaseName() {
-        boolean result = NameStringValidator.isValidNameString(LOWER_CASE_NAME);
+        boolean result = NameStringValidator.startsWithUppercase(LOWER_CASE_NAME);
         assertFalse(result);
     }
 
     @Test
     public void startsWithUppercase_validName() {
-        boolean result = NameStringValidator.isValidNameString(VALID_NAME);
+        boolean result = NameStringValidator.startsWithUppercase(VALID_NAME);
         assertTrue(result);
     }
 
     @Test
     public void hasEnoughCharacter_toShortName() {
-        boolean result = NameStringValidator.isValidNameString(TO_SHORT_NAME);
+        boolean result = NameStringValidator.hasEnoughCharacter(TO_SHORT_NAME);
         assertFalse(result);
     }
     @Test
     public void hasEnoughCharacter_validName() {
-        boolean result = NameStringValidator.isValidNameString(VALID_NAME);
+        boolean result = NameStringValidator.hasEnoughCharacter(VALID_NAME);
         assertTrue(result);
     }
 }

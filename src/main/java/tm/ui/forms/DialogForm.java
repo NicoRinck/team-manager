@@ -54,7 +54,6 @@ public abstract class DialogForm<T extends EntityAttributes> implements Form<T> 
 
     void setResultConverter() {
         dialog.setResultConverter((ButtonType) -> {
-            System.out.println(ButtonType);
             countButtonCalls++;
             if (ButtonType == okButton) {
                 countButtonCalls = -1;

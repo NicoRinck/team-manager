@@ -39,6 +39,10 @@ public class EntityList<T extends Entity> implements Component {
         return listView;
     }
 
+    public ListView<T> getListView() {
+        return listView;
+    }
+
     public ObservableList<T> getObservableList() {
         return observableList;
     }
