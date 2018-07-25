@@ -5,6 +5,7 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Window;
 import nr.data_model.entities.appointment.Training;
 import nr.data_model.entities.appointment.TrainingAttributes;
 
@@ -23,6 +24,8 @@ public class TrainingDetailView implements EntityDetailView<Training> {
 
     private void initView() {
         initGrid();
+        Window window = trainingDialog.getDialogPane().getScene().getWindow();
+        window.setOnCloseRequest(event -> window.hide());
         vBox.setSpacing(10);
         vBox.getChildren().addAll(gridPane);
         trainingDialog.getDialogPane().setContent(vBox);

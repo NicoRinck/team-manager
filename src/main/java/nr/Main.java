@@ -31,6 +31,7 @@ import nr.ui.forms.ExerciseForm;
 import nr.ui.forms.PlayerForm;
 import nr.ui.forms.TrainingForm;
 import nr.ui.views.EntityListView;
+import nr.ui.views.ExerciseDetailView;
 import nr.ui.views.PlayerDetailView;
 import nr.ui.views.TrainingDetailView;
 
@@ -86,7 +87,7 @@ public class Main extends Application {
 
         JsonDatabaseStrategy<Exercise> exerciseJsonDatabaseStrategy = new JsonDatabaseStrategy<>(databaseConnection,Exercise.class);
         DataManager<Exercise> exerciseDataManager = new DataManager<>(exerciseJsonDatabaseStrategy);
-        EntityList<Exercise> exerciseEntityList = new EntityList<>(exerciseDataManager.getEntities(), new ExerciseListCell(),new OpenDetailsHandler<>(null));
+        EntityList<Exercise> exerciseEntityList = new EntityList<>(exerciseDataManager.getEntities(), new ExerciseListCell(),new OpenDetailsHandler<>(new ExerciseDetailView()));
         EntityListView<Exercise> exercisesView = new EntityListView<>(exerciseEntityList,new Button("Übung hinzufügen..."),new AddExerciseHandler(new ExerciseForm(),exerciseDataManager));
 
         tab3.setText("Übungen");

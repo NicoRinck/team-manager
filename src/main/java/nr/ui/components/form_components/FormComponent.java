@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public abstract class FormComponent<T> implements Component {
 
-    protected final int amountOfErrorFields;
+    private final int amountOfErrorFields;
     protected Label[] errorLabels;
 
     public FormComponent(int amountOfErrorFields) {

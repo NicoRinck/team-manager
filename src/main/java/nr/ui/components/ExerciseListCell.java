@@ -2,21 +2,33 @@ package nr.ui.components;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import nr.data_model.entities.exercise.Exercise;
 
 public class ExerciseListCell extends ListCell<Exercise> implements ListItemStrategy<Exercise> {
 
-    private HBox hBox = new HBox();
+    private GridPane gridPane = new GridPane();
     private Label duration = new Label();
     private Label exerciseName = new Label(" Training");
 
     public ExerciseListCell() {
-        hBox.setSpacing(5);
-        hBox.getChildren().addAll(duration, exerciseName);
-        hBox.setId("h-box");
+        gridPane.setHgap(5);
+        gridPane.add(duration,0,0);
+        gridPane.add(exerciseName,1,0);
+        gridPane.setId("h-box");
+        setColumnConstraints();
         exerciseName.setId("name-label");
-        hBox.getStylesheets().add("/css/ExerciseListItem.css");
+        gridPane.getStylesheets().add("/css/ExerciseListItem.css");
+    }
+
+    private void setColumnConstraints() {
+     ColumnConstraints column1 = new ColumnConstraints(130);
+     ColumnConstraints column2 = new ColumnConstraints();
+     column2.setHgrow(Priority.ALWAYS);
+     column2.setPercentWidth(80);
+     gridPane.getColumnConstraints().addAll(column1,column2);
     }
 
     @Override
@@ -36,7 +48,7 @@ public class ExerciseListCell extends ListCell<Exercise> implements ListItemStra
             duration.setText(item.getExerciseAttributes().getAppointmentDuration().getDurationString());
             exerciseName.setText(item.getExerciseAttributes().getExerciseName());
             setText(null);
-            setGraphic(hBox);
+            setGraphic(gridPane);
         }
     }
 }
